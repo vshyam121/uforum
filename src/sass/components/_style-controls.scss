@@ -1,0 +1,21 @@
+@import '../abtracts/mixins';
+
+.style-controls {
+  display: flex;
+
+  &:last-child {
+    @include respond(tab-port) {
+      margin-top: 1rem;
+    }
+  }
+
+  &:not(:last-child) {
+    margin-right: 2rem;
+  }
+
+  & > * {
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
+}

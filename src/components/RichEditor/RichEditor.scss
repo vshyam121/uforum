@@ -1,0 +1,49 @@
+@import '../../sass/base/variables';
+@import '../../sass/abtracts/mixins';
+
+.rich-editor {
+  display: flex;
+  flex-direction: column;
+
+  &__style-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid $border-color;
+    padding: 1rem;
+
+    @include respond(tab-port) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &__editor {
+    padding: 1rem;
+    min-height: 8rem;
+    font-weight: 500;
+    border-bottom: 1px solid $border-color;
+  }
+
+  &__reply {
+    height: 4rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $color-grey-dark-2;
+    background-color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+.public-DraftEditorPlaceholder-root {
+  position: absolute;
+  color: $color-grey-dark-3;
+  font-weight: 500;
+}

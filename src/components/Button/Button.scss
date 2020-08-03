@@ -1,0 +1,21 @@
+@import '../../sass/base/variables';
+
+.button {
+  width: 100%;
+  height: 4rem;
+  border: 1px solid $border-color;
+  background-color: white;
+  color: $color-grey-dark-2;
+  transition: 0.5s;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    border: 0.5px solid $color-grey-dark-1;
+    color: black;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

@@ -1,0 +1,35 @@
+@import '../../sass/abtracts/mixins';
+
+.forum-feed {
+  display: flex;
+
+  &__boxes {
+    width: 85rem;
+    margin-right: 2rem;
+
+    & > * {
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    @include respond(tab-land) {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  &__new-thread {
+    width: 15rem;
+    flex: 1 0;
+
+    @include respond(tab-land) {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @include respond(tab-land) {
+    flex-direction: column-reverse;
+  }
+}

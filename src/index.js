@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './sass/index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import ScrollToTop from './hoc/ScrollToTop';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

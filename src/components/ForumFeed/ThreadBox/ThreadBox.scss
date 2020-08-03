@@ -1,0 +1,64 @@
+@import '../../../sass/base/variables';
+@import '../../../sass/abtracts/mixins';
+
+.thread-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-color;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+  }
+
+  &__userinfo {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: $color-grey-dark-2;
+    margin-top: 1rem;
+  }
+
+  &__usericon {
+    margin-right: 1rem;
+  }
+
+  &__metadata {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+
+    @include respond(phone) {
+      flex-direction: column-reverse;
+      align-items: start;
+    }
+  }
+
+  &__tags {
+    @include respond(phone) {
+      margin-top: 1rem;
+    }
+  }
+
+  &__stats {
+    display: flex;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: $color-grey-dark-3;
+
+    & > * {
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@import '../../sass/base/variables';
+
+.tag {
+  background-color: $color-grey-light-2;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  color: $color-grey-dark-3;
+  font-size: 1.2rem;
+}

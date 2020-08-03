@@ -1,0 +1,15 @@
+@import '../../../sass/base/variables';
+
+.feed-box {
+  border: 1px solid $border-color;
+
+  &__title {
+    border-bottom: 1px solid $border-color;
+    background-color: $color-grey-light-1;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    text-transform: uppercase;
+  }
+}

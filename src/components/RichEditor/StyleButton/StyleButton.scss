@@ -1,0 +1,14 @@
+@import '../../../sass/base/variables';
+
+.style-button {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $color-grey-dark-2;
+  cursor: pointer;
+
+  &--active {
+    font-weight: 900;
+    color: black;
+  }
+}

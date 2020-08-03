@@ -1,0 +1,26 @@
+@import '../../../sass/base/variables';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 6rem;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  &__logo-title {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__logo {
+    height: 4rem;
+    margin-right: 1rem;
+  }
+
+  &__auth {
+    text-transform: uppercase;
+  }
+}

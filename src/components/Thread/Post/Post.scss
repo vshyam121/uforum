@@ -1,0 +1,60 @@
+@import '../../../sass/base/variables';
+
+.post {
+  display: flex;
+  flex-direction: column;
+  min-height: 20rem;
+  padding: 1rem;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $color-grey-dark-3;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  &__userinfo {
+    display: flex;
+    align-items: center;
+  }
+
+  &__usericon {
+    height: 100%;
+    width: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  &__title {
+    margin-top: 2rem;
+    font-size: 2.2rem;
+    font-weight: 500;
+  }
+
+  &__content {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    flex: 1;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__favorite {
+    display: flex;
+    align-items: center;
+    color: $color-grey-dark-2;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  &__heart {
+    height: 100%;
+    width: 2rem;
+    margin-right: 1rem;
+  }
+}
