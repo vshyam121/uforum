@@ -4,6 +4,21 @@
 .rich-editor {
   display: flex;
   flex-direction: column;
+  border: 1px solid $border-color;
+  height: 100%;
+  width: 100%;
+
+  &--read-only {
+    border: none;
+  }
+
+  &--thread {
+    min-height: 40rem;
+  }
+
+  &--reply {
+    min-height: 20rem;
+  }
 
   &__style-controls {
     display: flex;
@@ -19,10 +34,15 @@
   }
 
   &__editor {
+    flex: 1;
     padding: 1rem;
-    min-height: 8rem;
     font-weight: 500;
     border-bottom: 1px solid $border-color;
+
+    &--read-only {
+      padding: 0;
+      border: none;
+    }
   }
 
   &__reply {
