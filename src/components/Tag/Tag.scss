@@ -1,9 +1,19 @@
 @import '../../sass/base/variables';
 
 .tag {
+  display: flex;
+  align-items: center;
   background-color: $color-grey-light-2;
-  padding: 0.5rem 0.75rem;
+  padding: 0rem 0.75rem;
+  height: 2.5rem;
   font-weight: 600;
   color: $color-grey-dark-3;
   font-size: 1.2rem;
+
+  &__delete {
+    width: 0.8rem;
+    height: 100%;
+    margin-left: 1rem;
+    cursor: pointer;
+  }
 }

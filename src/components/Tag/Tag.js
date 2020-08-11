@@ -1,8 +1,18 @@
 import React from 'react';
 import './Tag.scss';
+import { FaTimes } from 'react-icons/fa';
 
 const Tag = (props) => {
-  return <div className='tag'>{props.children}</div>;
+  let deleteTag = null;
+  if (props.delete) {
+    deleteTag = <FaTimes className='tag__delete' onClick={props.delete} />;
+  }
+  return (
+    <div className='tag'>
+      {props.children}
+      {deleteTag}
+    </div>
+  );
 };
 
 export default Tag;
