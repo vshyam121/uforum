@@ -19,6 +19,13 @@
     }
   }
 
+  &__loading {
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__new-thread {
     width: 15rem;
     flex: 1 0;

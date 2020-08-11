@@ -5,11 +5,28 @@
 
   &__title {
     border-bottom: 1px solid $border-color;
-    background-color: $color-grey-light-1;
+    background-color: $color-grey-light-2;
     height: 3rem;
     display: flex;
     align-items: center;
     padding-left: 1rem;
     text-transform: uppercase;
+  }
+
+  &__loading {
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__none {
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: $color-grey-dark-3;
+    font-weight: 500;
   }
 }
