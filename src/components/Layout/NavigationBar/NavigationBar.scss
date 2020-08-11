@@ -23,6 +23,7 @@
     font-weight: 700;
     cursor: pointer;
 
+    &--selected,
     &:hover {
       background-color: $color-grey-light-2;
       color: black;
