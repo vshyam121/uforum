@@ -1,0 +1,24 @@
+.user-profile {
+  &__top {
+    display: flex;
+    margin-bottom: 2rem;
+  }
+
+  &__usericon {
+    width: 7rem;
+    height: 100%;
+    margin-right: 2rem;
+  }
+
+  &__userinfo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__loading {
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
