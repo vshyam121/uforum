@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from './components/Layout/Layout';
-import ForumFeed from './components/ForumFeed/ForumFeed';
-import Thread from './components/Thread/Thread';
+import ForumFeedContainer from './containers/ForumFeedContainer';
+import ThreadContainer from './containers/ThreadContainer';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { authenticateToken } from './store/auth/actions';
+import { getAllForums } from './store/forum/actions';
+import NewThread from './components/NewThread/NewThread';
+import SignInContainer from './containers/SignInContainer';
+import SignUpContainer from './containers/SignUpContainer';
+import UserProfile from './components/UserProfile/UserProfile';
 
-function App() {
+function App(props) {
+  useEffect(() => {
+    props.authenticateToken();
+    props.getAllForums();
+  });
+
   return (
     <Layout>
       <Switch>
-        <Route exact path='/' component={ForumFeed} />
-        <Route exact path='/:forum' component={ForumFeed} />
-        <Route exact path='/:forum/discussion/:discussion' component={Thread} />
+        <Route exact path='/signin' component={SignInContainer} />
+        <Route exact path='/signup' component={SignUpContainer} />
+        <Route exact path='/' component={ForumFeedContainer} />
+        <Route exact path='/:forumSlug' component={ForumFeedContainer} />
+        <Route exact path='/user/:username' component={UserProfile} />
+        <Route
+          exact
+          path='/:forumSlug/thread/:threadSlug'
+          component={ThreadContainer}
+        />
+        <Route exact path='/:forumSlug/new-thread' component={NewThread} />
       </Switch>
     </Layout>
   );
 }
 
-export default App;
+export default connect(null, { getAllForums, authenticateToken })(App);
