@@ -1,0 +1,33 @@
+.add-tags {
+  &__form {
+    display: flex;
+    align-items: baseline;
+    height: 2.5rem;
+  }
+
+  &__input {
+    margin-left: 1rem;
+    border: none;
+    outline: none;
+  }
+
+  &__label {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  &__tags {
+    display: flex;
+    margin-left: 1rem;
+    & > *:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+  &__add {
+    width: 1.5rem;
+    height: 100%;
+    cursor: pointer;
+    align-self: flex-end;
+  }
+}

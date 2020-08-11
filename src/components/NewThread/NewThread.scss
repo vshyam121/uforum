@@ -1,0 +1,49 @@
+@import '../../sass/base/variables';
+
+.new-thread {
+  display: flex;
+  flex-direction: column;
+
+  &__top {
+    padding: 1rem;
+  }
+  &__title {
+    font-size: 2.2rem;
+    font-weight: 500;
+    border: none;
+    outline: none;
+  }
+
+  &__error {
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  &__tags {
+    margin-top: 1rem;
+    margin-bottom: 0.7rem;
+  }
+
+  &__editor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__signin {
+    height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: $color-grey-dark-3;
+  }
+
+  &__loading {
+    height: 40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
