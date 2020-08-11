@@ -1,0 +1,40 @@
+@import '../../../sass/base/variables';
+
+.drop-down-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: white;
+  z-index: 100;
+  width: 20rem;
+  padding: 1.5rem;
+  border: 1px solid $border-color;
+  display: flex;
+  justify-content: center;
+  transition: all 0.2s;
+  visibility: visible;
+  opacity: 1;
+
+  &__hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &__list {
+    list-style-type: none;
+  }
+
+  &__item {
+    color: $color-grey-dark-3;
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    &:hover {
+      color: black;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+}
