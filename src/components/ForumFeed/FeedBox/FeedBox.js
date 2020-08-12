@@ -4,29 +4,28 @@ import ThreadBox from '../ThreadBox/ThreadBox';
 import { ClipLoader } from 'react-spinners';
 
 const FeedBox = (props) => {
-  let threadBoxes = null;
-  const { threads, setCurrentThread } = props;
+  const { threads, gettingThreads, setCurrentThread } = props;
   console.log(threads);
-  if (threads) {
-    if (threads.length > 0) {
-      threadBoxes = threads.map((thread) => {
-        return (
-          <ThreadBox
-            key={thread._id}
-            thread={thread}
-            setCurrentThread={setCurrentThread}
-          />
-        );
-      });
-    } else {
-      threadBoxes = <div className='feed-box__none'>No threads...</div>;
-    }
-  } else {
+
+  let threadBoxes = null;
+  if (gettingThreads) {
     threadBoxes = (
       <div className='feed-box__loading'>
         <ClipLoader size={50} />
       </div>
     );
+  } else if (threads && threads.length > 0) {
+    threadBoxes = threads.map((thread) => {
+      return (
+        <ThreadBox
+          key={thread._id}
+          thread={thread}
+          setCurrentThread={setCurrentThread}
+        />
+      );
+    });
+  } else {
+    threadBoxes = <div className='feed-box__none'>No threads...</div>;
   }
 
   let feedBox = null;

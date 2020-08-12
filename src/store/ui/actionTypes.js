@@ -1,0 +1,1 @@
+export const SET_ERRORED_ACTION = 'SET_ERRORED_ACTION';

@@ -22,7 +22,7 @@ const NewThread = (props) => {
 
   const { forumSlug } = useParams();
 
-  const { forums, user, createThread, loadingUser } = props;
+  const { forums, user, createThread, loadingUser, creatingThread } = props;
 
   const inputRef = useRef(null);
 
@@ -73,7 +73,7 @@ const NewThread = (props) => {
   }
 
   let newThread = null;
-  if (loadingUser) {
+  if (loadingUser || creatingThread) {
     newThread = (
       <div className='new-thread__loading'>
         <ClipLoader size={50} />
@@ -129,6 +129,7 @@ const mapStateToProps = (state) => ({
   forums: state.forum.forums,
   user: state.auth.user,
   loadingUser: state.auth.loadingUser,
+  creatingThread: state.forum.creatingThread,
 });
 
 export default connect(mapStateToProps, { createThread })(NewThread);

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import {
-  getUnpinnedThreadsForForum,
-  getPinnedThreadsForForum,
+  getUnpinnedThreads,
+  getPinnedThreads,
   setCurrentThread,
 } from '../store/forum/actions';
 import { useParams } from 'react-router';
@@ -14,10 +14,12 @@ const ForumFeedContainer = (props) => {
 
   const {
     forums,
-    threads,
+    unpinnedThreads,
+    gettingUnpinnedThreads,
     pinnedThreads,
-    getUnpinnedThreadsForForum,
-    getPinnedThreadsForForum,
+    gettingPinnedThreads,
+    getUnpinnedThreads,
+    getPinnedThreads,
     setCurrentThread,
   } = props;
 
@@ -41,16 +43,11 @@ const ForumFeedContainer = (props) => {
         setForumFound(false);
       } else {
         setForumFound(true);
-        getUnpinnedThreadsForForum(forumId);
-        getPinnedThreadsForForum(forumId);
+        getUnpinnedThreads(forumId);
+        getPinnedThreads(forumId);
       }
     }
-  }, [
-    forums,
-    currentForumSlug,
-    getUnpinnedThreadsForForum,
-    getPinnedThreadsForForum,
-  ]);
+  }, [forums, currentForumSlug, getUnpinnedThreads, getPinnedThreads]);
 
   console.log(forumSlug);
   let forumFeed = null;
@@ -58,9 +55,11 @@ const ForumFeedContainer = (props) => {
     forumFeed = (
       <ForumFeed
         forums={forums}
-        threads={threads}
+        unpinnedThreads={unpinnedThreads}
+        gettingUnpinnedThreads={gettingUnpinnedThreads}
         forumSlug={forumSlug}
         pinnedThreads={pinnedThreads}
+        gettingPinnedThreads={gettingPinnedThreads}
         setCurrentThread={setCurrentThread}
       />
     );
@@ -73,9 +72,12 @@ const mapStateToProps = (state) => ({
   forums: state.forum.forums,
   threads: state.forum.threads,
   pinnedThreads: state.forum.pinnedThreads,
+  gettingPinnedThreads: state.forum.gettingPinnedThreads,
+  unpinnedThreads: state.forum.unpinnedThreads,
+  gettingUnpinnedThreads: state.forum.gettingUnpinnedThreads,
 });
 export default connect(mapStateToProps, {
-  getUnpinnedThreadsForForum,
-  getPinnedThreadsForForum,
+  getUnpinnedThreads,
+  getPinnedThreads,
   setCurrentThread,
 })(ForumFeedContainer);

@@ -13,48 +13,51 @@ export const getAllForums = () => {
   };
 };
 
-export const clearUnpinnedThreads = () => {
-  return {
-    type: actionTypes.CLEAR_UNPINNED_THREADS,
-  };
-};
-
-export const getUnpinnedThreadsForForum = (forumId) => {
+export const getUnpinnedThreads = (forumId) => {
   return (dispatch) => {
+    dispatch({ type: actionTypes.GET_UNPINNED_THREADS_START });
     return axios.get(`/forums/${forumId}/threads?pinned=false`).then((res) => {
-      dispatch({
-        type: actionTypes.GET_UNPINNED_THREADS_FOR_FORUM,
-        threads: res.data.threads,
-      });
+      if (res.data.threads) {
+        dispatch({
+          type: actionTypes.GET_UNPINNED_THREADS_SUCCESS,
+          unpinnedThreads: res.data.threads,
+        });
+      } else {
+        dispatch({ type: actionTypes.GET_UNPINNED_THREADS_FAILED });
+      }
     });
   };
 };
 
-export const clearPinnedThreads = () => {
-  return {
-    type: actionTypes.CLEAR_PINNED_THREADS,
-  };
-};
-
-export const getPinnedThreadsForForum = (forumId) => {
+export const getPinnedThreads = (forumId) => {
   return (dispatch) => {
+    dispatch({ type: actionTypes.GET_PINNED_THREADS_START });
     return axios.get(`/forums/${forumId}/threads?pinned=true`).then((res) => {
       console.log(res);
-      dispatch({
-        type: actionTypes.GET_PINNED_THREADS_FOR_FORUM,
-        pinnedThreads: res.data.threads,
-      });
+      if (res.data.threads) {
+        dispatch({
+          type: actionTypes.GET_PINNED_THREADS_SUCCESS,
+          pinnedThreads: res.data.threads,
+        });
+      } else {
+        dispatch({ type: actionTypes.GET_PINNED_THREADS_FAILED });
+      }
     });
   };
 };
 
-export const getRepliesForThread = (threadId) => {
+export const getReplies = (threadId) => {
   return (dispatch) => {
+    dispatch({ type: actionTypes.GET_REPLIES_START });
     return axios.get(`/threads/${threadId}/replies`).then((res) => {
-      dispatch({
-        type: actionTypes.GET_REPLIES_FOR_THREAD,
-        replies: res.data.replies,
-      });
+      if (res.data.replies) {
+        dispatch({
+          type: actionTypes.GET_REPLIES_SUCCESS,
+          replies: res.data.replies,
+        });
+      } else {
+        dispatch({ type: actionTypes.GET_REPLIES_FAILED });
+      }
     });
   };
 };
@@ -68,7 +71,7 @@ export const getThread = (threadSlug) => {
           type: actionTypes.GET_THREAD_SUCCESS,
           currentThread: res.data.thread,
         });
-        dispatch(getRepliesForThread(res.data.thread._id));
+        dispatch(getReplies(res.data.thread._id));
       } else {
         dispatch({ type: actionTypes.GET_THREAD_FAILED });
       }
@@ -78,6 +81,7 @@ export const getThread = (threadSlug) => {
 
 export const createThread = (forum, userId, title, content, tags) => {
   return (dispatch) => {
+    dispatch({ type: actionTypes.CREATE_THREAD_START });
     const thread = {
       forum: forum._id,
       user: userId,
@@ -86,16 +90,22 @@ export const createThread = (forum, userId, title, content, tags) => {
       tags,
     };
     return axios.post(`/threads`, thread).then((res) => {
-      dispatch(setCurrentThread(res.data.thread));
-      history.push({
-        pathname: `/${forum.slug}/thread/${res.data.thread.slug}`,
-      });
+      if (res.data.thread) {
+        dispatch({
+          type: actionTypes.CREATE_THREAD_SUCCESS,
+          currentThread: res.data.thread,
+        });
+        history.push(`/${forum.slug}/thread/${res.data.thread.slug}`);
+      } else {
+        dispatch({ type: actionTypes.CREATE_THREAD_FAILED });
+      }
     });
   };
 };
 
 export const createReply = (user, thread, content) => {
   return (dispatch) => {
+    dispatch({ type: actionTypes.CREATE_REPLY_START });
     const reply = {
       user,
       thread,
@@ -104,10 +114,14 @@ export const createReply = (user, thread, content) => {
 
     return axios.post(`/replies`, reply).then((res) => {
       console.log(res.data.reply);
-      dispatch({
-        type: actionTypes.CREATE_REPLY,
-        reply: res.data.reply,
-      });
+      if (res.data.reply) {
+        dispatch({
+          type: actionTypes.CREATE_REPLY_SUCCESS,
+          reply: res.data.reply,
+        });
+      } else {
+        dispatch({ type: actionTypes.CREATE_REPLY_FAILED });
+      }
     });
   };
 };
@@ -137,36 +151,32 @@ export const unfavoriteThread = (userId, threadId) => {
   };
 };
 
-export const deleteThread = (threadId) => {
+export const deleteThread = (forumSlug, threadId) => {
   return (dispatch) => {
     dispatch({ type: actionTypes.DELETE_THREAD_START });
     return axios.delete(`/threads/${threadId}`).then((res) => {
       if (res.data.success) {
         dispatch({ type: actionTypes.DELETE_THREAD_SUCCESS });
+        history.push(`/${forumSlug}`);
+      } else {
+        dispatch({ type: actionTypes.DELETE_THREAD_FAILED });
       }
     });
   };
 };
 
-export const deleteThreadRedirect = () => {
-  return {
-    type: actionTypes.DELETE_THREAD_REDIRECT,
-  };
-};
-
-export const clearUserThreads = () => {
-  return {
-    type: actionTypes.CLEAR_USER_THREADS,
-  };
-};
-
 export const getUserThreads = (username) => {
   return (dispatch) => {
+    dispatch({ type: actionTypes.GET_USER_THREADS_START });
     return axios.get(`/users/${username}/threads`).then((res) => {
-      dispatch({
-        type: actionTypes.GET_USER_THREADS,
-        userThreads: res.data.threads,
-      });
+      if (res.data.threads) {
+        dispatch({
+          type: actionTypes.GET_USER_THREADS_SUCCESS,
+          userThreads: res.data.threads,
+        });
+      } else {
+        dispatch({ type: actionTypes.GET_USER_THREADS_FAILED });
+      }
     });
   };
 };

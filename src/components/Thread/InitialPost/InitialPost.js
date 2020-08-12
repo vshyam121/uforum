@@ -14,16 +14,11 @@ const InitialPost = (props) => {
     handleFavoriteThread,
     handleUnfavoriteThread,
     handleDeleteThread,
-    handleDeleteThreadRedirect,
     deletingThread,
-    deletedThread,
   } = props;
 
   let post = null;
-  if (deletedThread) {
-    handleDeleteThreadRedirect();
-    props.history.push('/');
-  } else if (!thread || deletingThread) {
+  if (!thread || deletingThread) {
     post = (
       <div className='post__loading'>
         <ClipLoader size={50} />

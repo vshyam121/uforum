@@ -13,7 +13,13 @@ import { ClipLoader } from 'react-spinners';
 
 const UserProfile = (props) => {
   const { username } = useParams();
-  const { userThreads, getUserThreads, getUserProfile, userProfile } = props;
+  const {
+    userThreads,
+    gettingUserThreads,
+    getUserThreads,
+    getUserProfile,
+    userProfile,
+  } = props;
 
   useEffect(() => {
     console.log('getting user threads: ' + username);
@@ -50,6 +56,7 @@ const UserProfile = (props) => {
       <FeedBox
         title='Threads'
         threads={userThreads}
+        gettingThreads={gettingUserThreads}
         setCurrentThread={setCurrentThread}
       />
     </div>
@@ -58,6 +65,7 @@ const UserProfile = (props) => {
 
 const mapStateToProps = (state) => ({
   userThreads: state.forum.userThreads,
+  gettingUserThreads: state.forum.gettingUserThreads,
   userProfile: state.forum.userProfile,
 });
 

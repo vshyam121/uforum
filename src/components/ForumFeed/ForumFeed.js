@@ -6,8 +6,15 @@ import { Link } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 
 const ForumFeed = (props) => {
-  const { forums, setCurrentThread } = props;
-  let { forumSlug } = props;
+  const {
+    forums,
+    forumSlug,
+    unpinnedThreads,
+    gettingUnpinnedThreads,
+    pinnedThreads,
+    gettingPinnedThreads,
+    setCurrentThread,
+  } = props;
 
   let forumFeedContent = null;
   if (!forums) {
@@ -21,12 +28,14 @@ const ForumFeed = (props) => {
       <React.Fragment>
         <FeedBox
           title='Pinned'
-          threads={props.pinnedThreads}
+          threads={pinnedThreads}
+          gettingThreads={gettingPinnedThreads}
           setCurrentThread={setCurrentThread}
         />
         <FeedBox
           title='Threads'
-          threads={props.threads}
+          threads={unpinnedThreads}
+          gettingThreads={gettingUnpinnedThreads}
           setCurrentThread={setCurrentThread}
         />
       </React.Fragment>

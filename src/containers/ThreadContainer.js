@@ -1,43 +1,52 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router';
 import Thread from '../components/Thread/Thread';
 import { connect } from 'react-redux';
 import {
-  getRepliesForThread,
+  getReplies,
   getThread,
   createReply,
   favoriteThread,
   unfavoriteThread,
   deleteThread,
-  deleteThreadRedirect,
 } from '../store/forum/actions';
 
 const ThreadContainer = (props) => {
-  const { threadSlug } = useParams();
+  const { forumSlug, threadSlug } = useParams();
   const {
     getThread,
-    getRepliesForThread,
+    getReplies,
+    gettingReplies,
     replies,
     currentThread,
     gettingThread,
+    creatingReply,
     createReply,
     user,
     loadingUser,
     favoriteThread,
     unfavoriteThread,
     deleteThread,
-    deleteThreadRedirect,
     deletingThread,
-    deletedThread,
   } = props;
+
+  const usePrevious = (value) => {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  };
+
+  const previousThread = usePrevious(currentThread);
 
   useEffect(() => {
     if (!currentThread) {
       getThread(threadSlug);
-    } else {
-      getRepliesForThread(currentThread._id);
+    } else if (!previousThread || currentThread._id !== previousThread._id) {
+      getReplies(currentThread._id);
     }
-  }, [getThread, getRepliesForThread, currentThread, threadSlug]);
+  }, [getThread, getReplies, currentThread, previousThread, threadSlug]);
 
   const saveReplyContent = (content) => {
     createReply(user._id, currentThread._id, content);
@@ -54,48 +63,44 @@ const ThreadContainer = (props) => {
   };
 
   const handleDeleteThread = () => {
-    deleteThread(currentThread._id);
-  };
-
-  const handleDeleteThreadRedirect = () => {
-    deleteThreadRedirect();
+    deleteThread(forumSlug, currentThread._id);
   };
 
   return (
     <Thread
-      threadSlug={threadSlug}
+      forumSlug={forumSlug}
       thread={currentThread}
       gettingThread={gettingThread}
       replies={replies}
+      gettingReplies={gettingReplies}
+      creatingReply={creatingReply}
       saveReplyContent={saveReplyContent}
       user={user}
       loadingUser={loadingUser}
       handleFavoriteThread={handleFavoriteThread}
       handleUnfavoriteThread={handleUnfavoriteThread}
       handleDeleteThread={handleDeleteThread}
-      handleDeleteThreadRedirect={handleDeleteThreadRedirect}
       deletingThread={deletingThread}
-      deletedThread={deletedThread}
     />
   );
 };
 
 const mapStateToProps = (state) => ({
   replies: state.forum.replies,
+  gettingReplies: state.forum.gettingReplies,
+  creatingReply: state.forum.creatingReply,
   currentThread: state.forum.currentThread,
   gettingThread: state.forum.gettingThread,
   deletingThread: state.forum.deletingThread,
-  deletedThread: state.forum.deletedThread,
   user: state.auth.user,
   loadingUser: state.auth.loadingUser,
 });
 
 export default connect(mapStateToProps, {
-  getRepliesForThread,
+  getReplies,
   getThread,
   createReply,
   favoriteThread,
   unfavoriteThread,
   deleteThread,
-  deleteThreadRedirect,
 })(React.memo(ThreadContainer));

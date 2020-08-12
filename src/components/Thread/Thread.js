@@ -11,25 +11,25 @@ const Thread = (props) => {
     thread,
     gettingThread,
     replies,
+    creatingReply,
+    gettingReplies,
     saveReplyContent,
     user,
     loadingUser,
     handleFavoriteThread,
     handleUnfavoriteThread,
     handleDeleteThread,
-    handleDeleteThreadRedirect,
     deletingThread,
-    deletedThread,
   } = props;
 
   let repliesContent = null;
-  if (!replies) {
+  if (gettingReplies) {
     repliesContent = (
       <div className='thread__loading'>
         <ClipLoader size={50} />
       </div>
     );
-  } else {
+  } else if (replies) {
     repliesContent = (
       <div className='thread__replies'>
         {replies.map((reply) => (
@@ -42,7 +42,7 @@ const Thread = (props) => {
   console.log(loadingUser);
 
   let editor = null;
-  if (loadingUser) {
+  if (loadingUser || creatingReply) {
     editor = (
       <div className='thread__loading'>
         <ClipLoader size={50} />
@@ -61,7 +61,7 @@ const Thread = (props) => {
   }
 
   let threadContent = null;
-  if (gettingThread) {
+  if (gettingThread || deletingThread) {
     threadContent = (
       <div className='thread__loading'>
         <ClipLoader size={50} />
@@ -78,9 +78,7 @@ const Thread = (props) => {
           handleFavoriteThread={handleFavoriteThread}
           handleUnfavoriteThread={handleUnfavoriteThread}
           handleDeleteThread={handleDeleteThread}
-          handleDeleteThreadRedirect={handleDeleteThreadRedirect}
           deletingThread={deletingThread}
-          deletedThread={deletedThread}
         />
         {editor}
         {repliesContent}
