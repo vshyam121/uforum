@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import authReducer from './auth/reducer';
-import forumReducer from './forum/reducer';
-import uiReducer from './ui/reducer';
+import feedsReducer from './feeds/reducer';
+import threadReducer from './thread/reducer';
 
 export default combineReducers({
   auth: authReducer,
-  forum: forumReducer,
-  ui: uiReducer,
+  feeds: feedsReducer,
+  thread: threadReducer,
 });
