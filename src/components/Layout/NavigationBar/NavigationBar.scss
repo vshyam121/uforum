@@ -14,19 +14,37 @@
 
   &__forum {
     display: flex;
-    align-items: center;
     height: 100%;
-    padding: 0 2rem;
-    color: $color-grey-dark-3;
     transition: 0.5s;
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
+    color: $color-grey-dark-3;
 
-    &--selected,
-    &:hover {
-      background-color: $color-grey-light-2;
+    &--selected {
+      background-color: $color-grey-light-3;
       color: black;
     }
+
+    &:hover {
+      color: black;
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    color: inherit;
+    height: 100%;
+  }
+
+  &__loading {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: $color-grey-dark-3;
   }
 }
