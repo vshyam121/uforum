@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-/* Axios instance used to call firebase api */
+/* Axios instance used to call api */
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
   withCredentials: true,
