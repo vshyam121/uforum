@@ -1,7 +1,5 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axiosAPI';
-import { setErroredAction } from '../ui/actions';
-import * as actionErrors from '../../utils/actionErrors';
 import { history } from '../../index';
 
 /* To show loading in UI when authentication action has started */
@@ -90,11 +88,9 @@ export const signIn = (username, password) => {
       .post('/auth/signin', authData)
       .then((res) => {
         //Successful authentication, get user's data here
-        console.log(res.data);
         dispatch(authSuccess(res.data));
       })
       .catch((err) => {
-        dispatch(setErroredAction(actionErrors.SIGN_IN));
         if (err.response) {
           dispatch(signInFailed(err.response));
         } else {
@@ -122,7 +118,6 @@ export const signUp = (firstName, lastName, email, username, password) => {
         dispatch(authSuccess(res.data));
       })
       .catch((err) => {
-        dispatch(setErroredAction(actionErrors.SIGN_UP));
         if (err.response) {
           dispatch(signUpFailed(err.response));
         } else {
@@ -144,7 +139,6 @@ export const authenticateToken = () => {
       })
       .catch(() => {
         dispatch(authTokenFailed());
-        dispatch(setErroredAction(actionErrors.AUTH_TOKEN));
       });
   };
 };
