@@ -26,10 +26,10 @@ const SignUp = (props) => {
   if (props.error) {
     if (props.error.status === 500) {
       error = 'Internal server error.';
-    } else if (props.error.data.message === 'Duplicate field value entered') {
+    } else if (props.error.data.error === 'Duplicate field value entered') {
       error = 'The email you entered is already taken.';
     } else {
-      error = props.error.data.message;
+      error = props.error.data.error;
     }
     errorMessage = <div className='form-component__error'>{error}</div>;
   }

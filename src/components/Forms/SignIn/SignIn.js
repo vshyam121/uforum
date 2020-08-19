@@ -38,7 +38,7 @@ const SignIn = (props) => {
     if (props.error.status === 500) {
       error = 'Internal server error.';
     } else {
-      error = props.error.data.message;
+      error = props.error.data.error;
     }
     errorMessage = <div className='form-component__error'>{error}</div>;
   }

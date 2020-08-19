@@ -43,7 +43,6 @@ class SignInContainer extends Component {
   };
 
   handleSubmit = (event) => {
-    console.log('on submit');
     event.preventDefault();
     this.setState({ formSubmitted: true });
     if (this.state.formIsValid) {
