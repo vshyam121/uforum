@@ -64,7 +64,7 @@ const checkValidity = (value, rules) => {
   }
 
   if (rules.isName) {
-    const pattern = /[a-zA-Z]*/;
+    const pattern = /^[a-zA-Z]*$/;
     isValid = pattern.test(value) && isValid;
   }
 
