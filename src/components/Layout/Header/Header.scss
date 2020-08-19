@@ -44,15 +44,7 @@
     font-weight: 600;
   }
 
-  &__signout {
-    border: none;
-    background-color: white;
-    font: inherit;
-    color: inherit;
+  &__menu-item {
     cursor: pointer;
-  }
-
-  &__profile {
-    color: inherit;
   }
 }
