@@ -1,50 +1,50 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './UserProfile.scss';
-import {
-  setCurrentThread,
-  getUserThreads,
-  getUserProfile,
-} from '../../store/forum/actions';
 import FeedBox from '../ForumFeed/FeedBox/FeedBox';
-import { connect } from 'react-redux';
-import { useParams } from 'react-router';
 import { FaUser } from 'react-icons/fa';
 import { ClipLoader } from 'react-spinners';
 
 const UserProfile = (props) => {
-  const { username } = useParams();
   const {
     userThreads,
     gettingUserThreads,
-    getUserThreads,
-    getUserProfile,
+    getUserThreadsError,
     userProfile,
+    gettingUserProfile,
+    getUserProfileError,
+    setCurrentThread,
   } = props;
 
-  useEffect(() => {
-    console.log('getting user threads: ' + username);
-    getUserProfile(username);
-    getUserThreads(username);
-  }, [username, getUserThreads, getUserProfile]);
-
   let userProfileContent = null;
-  if (!userProfile) {
+  if (getUserProfileError) {
+    userProfileContent = (
+      <div className='user-profile__error'>{getUserProfileError}</div>
+    );
+  } else if (gettingUserProfile || !userProfile) {
     userProfileContent = (
       <div className='user-profile__loading'>
         <ClipLoader size={50} />
       </div>
     );
-  }
-  if (userProfile) {
+  } else {
     userProfileContent = (
       <div className='user-profile__top'>
         <FaUser className='user-profile__usericon' />
         <div className='user-profile__userinfo'>
-          <span>{userProfile.username}</span>
-          <span>
-            {userProfile.firstName} {userProfile.lastName}
-          </span>
-          <span>{userProfile.email}</span>
+          <div className='user-profile__username'>
+            <span className='user-profile__label'>Username: </span>
+            <span>{userProfile.username}</span>
+          </div>
+          <div className='user-profile__name'>
+            <span className='user-profile__label'>Name: </span>
+            <span>
+              {userProfile.firstName} {userProfile.lastName}
+            </span>
+          </div>
+          <div className='user-profile__email'>
+            <span className='user-profile__label'>Email: </span>
+            <span>{userProfile.email}</span>
+          </div>
         </div>
       </div>
     );
@@ -58,19 +58,10 @@ const UserProfile = (props) => {
         threads={userThreads}
         gettingThreads={gettingUserThreads}
         setCurrentThread={setCurrentThread}
+        error={getUserThreadsError}
       />
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
-  userThreads: state.forum.userThreads,
-  gettingUserThreads: state.forum.gettingUserThreads,
-  userProfile: state.forum.userProfile,
-});
-
-export default connect(mapStateToProps, {
-  setCurrentThread,
-  getUserThreads,
-  getUserProfile,
-})(UserProfile);
+export default UserProfile;
