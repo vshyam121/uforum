@@ -41,7 +41,7 @@ const Form = (props) => {
           />
         );
       })}
-      <div className='form-component__submit'>
+      <div className='form__submit'>
         <Button disabled={props.formSubmitted && !props.formIsValid}>
           Submit
         </Button>
@@ -50,7 +50,7 @@ const Form = (props) => {
   );
 
   return (
-    <form className='form-component__form' onSubmit={props.onSubmit}>
+    <form className='form' onSubmit={props.onSubmit}>
       {form}
     </form>
   );
