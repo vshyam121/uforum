@@ -42,11 +42,6 @@ const RichEditor = (props) => {
     }
   };
 
-  const onTab = (e) => {
-    const maxDepth = 4;
-    onChange(RichUtils.onTab(e, editorState, maxDepth));
-  };
-
   const toggleInlineStyle = (inlineStyle) => {
     onChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
   };
@@ -65,7 +60,6 @@ const RichEditor = (props) => {
       JSON.stringify(convertToRaw(editorState.getCurrentContent())),
       contentHasChanged
     );
-    setEditorState(EditorState.createEmpty());
   };
 
   let styleControls = null;
@@ -108,14 +102,33 @@ const RichEditor = (props) => {
     );
   }
 
+  const styleMap = {
+    MONOSPACE: {
+      fontFamily: 'monospace',
+    },
+  };
+
+  const blockStyleFn = (contentBlock) => {
+    const type = contentBlock.getType();
+    switch (type) {
+      case 'BLOCKQUOTE':
+        return 'blockquote';
+      case 'CODE':
+        return 'code';
+      default:
+        return;
+    }
+  };
+
   return (
     <div className={classNames.join(' ')}>
       {styleControls}
       <div className={editorClassNames.join(' ')} onClick={focus}>
         <Editor
           editorState={editorState}
+          customStyleMap={styleMap}
+          blockStyleFn={blockStyleFn}
           handleKeyCommand={handleKeyCommand}
-          onTab={onTab}
           onChange={onChange}
           placeholder='Type here...'
           ref={editor}

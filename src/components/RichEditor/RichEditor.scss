@@ -1,5 +1,5 @@
 @import '../../sass/base/variables';
-@import '../../sass/abtracts/mixins';
+@import '../../sass/abstracts/mixins';
 
 .rich-editor {
   display: flex;
@@ -66,4 +66,17 @@
   position: absolute;
   color: $color-grey-dark-3;
   font-weight: 500;
+}
+
+.blockquote {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-style: italic;
+  font-family: serif;
+  padding: 0.5rem;
+}
+
+.code {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-family: monospace;
+  padding: 0.5rem;
 }

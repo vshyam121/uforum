@@ -4,31 +4,23 @@ import StyleButton from './StyleButton/StyleButton';
 const BLOCK_TYPES = [
   {
     label: 'H1',
-    style: 'header-one',
+    style: 'H1',
   },
   {
     label: 'H2',
-    style: 'header-two',
+    style: 'H2',
   },
   {
     label: 'H3',
-    style: 'header-three',
+    style: 'H3',
   },
   {
     label: 'Blockquote',
-    style: 'blockquote',
+    style: 'BLOCKQUOTE',
   },
-  /*{
-    label: 'UL',
-    style: 'unordered-list-item',
-  },
-  {
-    label: 'OL',
-    style: 'ordered-list-item',
-  },*/
   {
     label: 'Code Block',
-    style: 'code-block',
+    style: 'CODE',
   },
 ];
 
