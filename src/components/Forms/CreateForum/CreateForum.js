@@ -39,8 +39,8 @@ const CreateForum = (props) => {
 
 CreateForum.propTypes = {
   creatingForum: PropTypes.bool,
-  error: PropTypes.object,
-  isAuthenticated: PropTypes.string,
+  createdForum: PropTypes.bool,
+  error: PropTypes.string,
 };
 
 export default CreateForum;
