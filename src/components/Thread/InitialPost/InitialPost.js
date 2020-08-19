@@ -2,6 +2,7 @@ import React from 'react';
 import './InitialPost.scss';
 import Tag from '../../Tag/Tag';
 import { FaUser, FaHeart, FaRegHeart, FaTrashAlt } from 'react-icons/fa';
+import { AiFillPushpin, AiOutlinePushpin } from 'react-icons/ai';
 import Moment from 'moment';
 import RichEditor from '../../RichEditor/RichEditor';
 import { ClipLoader } from 'react-spinners';
@@ -14,7 +15,10 @@ const InitialPost = (props) => {
     handleFavoriteThread,
     handleUnfavoriteThread,
     handleDeleteThread,
+    handleSetPinnedStatus,
     deletingThread,
+    togglingFavorite,
+    togglingPin,
   } = props;
 
   let post = null;
@@ -32,30 +36,62 @@ const InitialPost = (props) => {
 
     let favorite = null;
     if (user) {
-      if (thread.favorites.includes(user._id)) {
+      if (togglingFavorite) {
+        favorite = <div className='post__action'>Toggling favorite...</div>;
+      } else if (thread.favorites.includes(user._id)) {
         favorite = (
-          <button className='post__action' onClick={handleUnfavoriteThread}>
+          <div className='post__action' onClick={handleUnfavoriteThread}>
             <FaHeart className='post__action-icon' />
             <span>Unfavorite</span>
-          </button>
+          </div>
         );
       } else {
         favorite = (
-          <button className='post__action' onClick={handleFavoriteThread}>
+          <div className='post__action' onClick={handleFavoriteThread}>
             <FaRegHeart className='post__action-icon' />
             <span>Favorite</span>
-          </button>
+          </div>
         );
       }
     }
 
     let deleteThreadContent = null;
-    if (user && thread.user._id === user._id) {
+    if (user && (thread.user._id === user._id || user.role === 'admin')) {
       deleteThreadContent = (
-        <button className='post__action' onClick={handleDeleteThread}>
+        <div className='post__action' onClick={handleDeleteThread}>
           <FaTrashAlt className='post__action-icon' />
           <span>Delete</span>
-        </button>
+        </div>
+      );
+    }
+
+    let pinThreadContent = null;
+    if (user && user.role === 'admin') {
+      let pinAction = null;
+      if (togglingPin) {
+        pinAction = 'Toggling pin...';
+      } else if (thread.pinned) {
+        pinAction = (
+          <React.Fragment>
+            <AiFillPushpin className='post__pin' />
+            <span>Unpin</span>
+          </React.Fragment>
+        );
+      } else {
+        pinAction = (
+          <React.Fragment>
+            <AiOutlinePushpin className='post__pin' />
+            <span>Pin</span>
+          </React.Fragment>
+        );
+      }
+      pinThreadContent = (
+        <div
+          className='post__action'
+          onClick={() => handleSetPinnedStatus(!thread.pinned)}
+        >
+          {pinAction}
+        </div>
       );
     }
 
@@ -78,6 +114,7 @@ const InitialPost = (props) => {
         <div className='post__bottom'>
           <div className='post__tags'>{tags}</div>
           <div className='post__actions'>
+            {pinThreadContent}
             {favorite}
             {deleteThreadContent}
           </div>

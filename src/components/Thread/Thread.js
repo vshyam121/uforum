@@ -1,87 +1,65 @@
 import React from 'react';
 import './Thread.scss';
-import RichEditor from '../RichEditor/RichEditor';
+import ReplyEditor from './ReplyEditor/ReplyEditor';
 import InitialPost from './InitialPost/InitialPost';
-import Reply from './Reply/Reply';
-import { REPLY } from '../RichEditor/RichEditor';
+import Replies from './Replies/Replies';
 import { ClipLoader } from 'react-spinners';
 
 const Thread = (props) => {
-  const {
-    thread,
-    gettingThread,
-    replies,
-    creatingReply,
-    gettingReplies,
-    saveReplyContent,
-    user,
-    loadingUser,
-    handleFavoriteThread,
-    handleUnfavoriteThread,
-    handleDeleteThread,
-    deletingThread,
-  } = props;
-
-  let repliesContent = null;
-  if (gettingReplies) {
-    repliesContent = (
+  let threadContent = null;
+  if (props.gettingThread || props.deletingThread) {
+    threadContent = (
       <div className='thread__loading'>
         <ClipLoader size={50} />
       </div>
     );
-  } else if (replies) {
-    repliesContent = (
-      <div className='thread__replies'>
-        {replies.map((reply) => (
-          <Reply key={reply._id} reply={reply} />
-        ))}
-      </div>
-    );
-  }
-
-  console.log(loadingUser);
-
-  let editor = null;
-  if (loadingUser || creatingReply) {
-    editor = (
-      <div className='thread__loading'>
-        <ClipLoader size={50} />
-      </div>
-    );
+  } else if (!props.thread && props.doneGettingThread) {
+    threadContent = <div className='thread__not-found'>Thread not found.</div>;
   } else {
-    if (!user) {
-      editor = <div className='thread__signin'>Please sign in to reply.</div>;
-    } else {
-      editor = (
-        <div className='thread__editor'>
-          <RichEditor type={REPLY} saveContent={saveReplyContent} />
+    let error = null;
+    if (
+      props.toggleFavoriteError ||
+      props.togglePinError ||
+      props.deleteThreadError
+    ) {
+      error = (
+        <div className='thread__error'>
+          {props.toggleFavoriteError ||
+            props.togglePinError ||
+            props.deleteThreadError}
         </div>
       );
     }
-  }
-
-  let threadContent = null;
-  if (gettingThread || deletingThread) {
-    threadContent = (
-      <div className='thread__loading'>
-        <ClipLoader size={50} />
-      </div>
-    );
-  } else if (!thread) {
-    threadContent = <div className='thread__not-found'>Thread not found</div>;
-  } else {
     threadContent = (
       <React.Fragment>
         <InitialPost
-          thread={thread}
-          user={user}
-          handleFavoriteThread={handleFavoriteThread}
-          handleUnfavoriteThread={handleUnfavoriteThread}
-          handleDeleteThread={handleDeleteThread}
-          deletingThread={deletingThread}
+          thread={props.thread}
+          user={props.user}
+          togglingFavorite={props.togglingFavorite}
+          togglingPin={props.togglingPin}
+          handleFavoriteThread={props.handleFavoriteThread}
+          handleUnfavoriteThread={props.handleUnfavoriteThread}
+          handleDeleteThread={props.handleDeleteThread}
+          handleSetPinnedStatus={props.handleSetPinnedStatus}
+          deletingThread={props.deletingThread}
         />
-        {editor}
-        {repliesContent}
+        {error}
+        <ReplyEditor
+          noReplyError={props.noReplyError}
+          creatingReply={props.creatingReply}
+          user={props.user}
+          createReplyError={props.createReplyError}
+          replyContent={props.replyContent}
+          handleSaveReplyContent={props.handleSaveReplyContent}
+        />
+        <Replies
+          user={props.user}
+          replies={props.replies}
+          gettingReplies={props.gettingReplies}
+          deletingReplyId={props.deletingReplyId}
+          deleteReplyError={props.deleteReplyError}
+          handleDeleteReply={props.handleDeleteReply}
+        />
       </React.Fragment>
     );
   }

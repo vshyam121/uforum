@@ -1,0 +1,48 @@
+import React from 'react';
+import RichEditor from '../../RichEditor/RichEditor';
+import { ClipLoader } from 'react-spinners';
+import { REPLY } from '../../RichEditor/RichEditor';
+
+const ReplyEditor = (props) => {
+  const {
+    loadingUser,
+    creatingReply,
+    noReplyError,
+    user,
+    createReplyError,
+    replyContent,
+    handleSaveReplyContent,
+  } = props;
+
+  let editor = null;
+  if (loadingUser || creatingReply) {
+    editor = (
+      <div className='thread__loading'>
+        <ClipLoader size={50} />
+      </div>
+    );
+  } else if (!user) {
+    editor = <div className='thread__signin'>Please sign in to reply.</div>;
+  } else {
+    let error = null;
+    if (noReplyError) {
+      error = 'Please provide some content in your reply.';
+    } else if (createReplyError) {
+      error = createReplyError;
+    }
+    editor = (
+      <div className='thread__editor'>
+        <div className='thread__error'>{error}</div>
+        <RichEditor
+          type={REPLY}
+          content={replyContent}
+          saveContent={handleSaveReplyContent}
+        />
+      </div>
+    );
+  }
+
+  return editor;
+};
+
+export default ReplyEditor;

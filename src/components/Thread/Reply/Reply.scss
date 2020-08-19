@@ -20,6 +20,21 @@
     padding-right: 1rem;
   }
 
+  &__top-right {
+    display: flex;
+    align-items: center;
+
+    & > *:not(:last-child) {
+      margin-right: 2rem;
+    }
+  }
+
+  &__delete {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
   &__userinfo {
     display: flex;
     align-items: center;
@@ -34,5 +49,10 @@
   &__content {
     min-height: 8rem;
     padding: 1rem;
+  }
+
+  &__loading {
+    display: flex;
+    justify-content: center;
   }
 }

@@ -1,33 +1,36 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import Thread from '../components/Thread/Thread';
 import { connect } from 'react-redux';
 import {
+  createReply,
+  deleteReply,
+  deleteThread,
   getReplies,
   getThread,
-  createReply,
   favoriteThread,
   unfavoriteThread,
-  deleteThread,
-} from '../store/forum/actions';
+  setThreadPinnedStatus,
+  resetThreadErrors,
+} from '../store/thread/actions';
+import find from 'lodash/find';
 
 const ThreadContainer = (props) => {
   const { forumSlug, threadSlug } = useParams();
   const {
+    forums,
     getThread,
     getReplies,
-    gettingReplies,
-    replies,
-    currentThread,
-    gettingThread,
-    creatingReply,
+    thread,
     createReply,
     user,
-    loadingUser,
     favoriteThread,
     unfavoriteThread,
     deleteThread,
-    deletingThread,
+    deletingReply,
+    deleteReply,
+    setThreadPinnedStatus,
+    resetThreadErrors,
   } = props;
 
   const usePrevious = (value) => {
@@ -38,60 +41,90 @@ const ThreadContainer = (props) => {
     return ref.current;
   };
 
-  const previousThread = usePrevious(currentThread);
+  const previousThread = usePrevious(thread);
 
   useEffect(() => {
-    if (!currentThread) {
+    if (!thread) {
       getThread(threadSlug);
-    } else if (!previousThread || currentThread._id !== previousThread._id) {
-      getReplies(currentThread._id);
+    } else if (!previousThread || thread._id !== previousThread._id) {
+      getReplies(thread._id);
     }
-  }, [getThread, getReplies, currentThread, previousThread, threadSlug]);
+    return () => {
+      resetThreadErrors();
+    };
+  }, [
+    getThread,
+    getReplies,
+    thread,
+    previousThread,
+    threadSlug,
+    deletingReply,
+    resetThreadErrors,
+  ]);
 
-  const saveReplyContent = (content) => {
-    createReply(user._id, currentThread._id, content);
+  const [noReplyError, setNoReplyError] = useState(null);
+  const handleSaveReplyContent = (content, contentHasChanged) => {
+    if (!contentHasChanged) {
+      setNoReplyError(true);
+    } else {
+      setNoReplyError(false);
+      const forum = find(forums, { slug: forumSlug });
+      createReply(forum._id, user._id, thread._id, content);
+    }
   };
 
   const handleUnfavoriteThread = () => {
-    console.log('unfavorite');
-    unfavoriteThread(user._id, currentThread._id);
+    unfavoriteThread(user._id, thread._id);
   };
 
   const handleFavoriteThread = () => {
-    console.log('favorite');
-    favoriteThread(user._id, currentThread._id);
+    favoriteThread(user._id, thread._id);
+  };
+
+  const handleSetPinnedStatus = (pinnedStatus) => {
+    setThreadPinnedStatus(thread._id, pinnedStatus);
   };
 
   const handleDeleteThread = () => {
-    deleteThread(forumSlug, currentThread._id);
+    deleteThread(forumSlug, thread._id);
+  };
+
+  const handleDeleteReply = (replyId) => {
+    deleteReply(thread._id, replyId);
   };
 
   return (
     <Thread
+      {...props}
       forumSlug={forumSlug}
-      thread={currentThread}
-      gettingThread={gettingThread}
-      replies={replies}
-      gettingReplies={gettingReplies}
-      creatingReply={creatingReply}
-      saveReplyContent={saveReplyContent}
-      user={user}
-      loadingUser={loadingUser}
+      noReplyError={noReplyError}
+      handleSaveReplyContent={handleSaveReplyContent}
       handleFavoriteThread={handleFavoriteThread}
       handleUnfavoriteThread={handleUnfavoriteThread}
       handleDeleteThread={handleDeleteThread}
-      deletingThread={deletingThread}
+      handleDeleteReply={handleDeleteReply}
+      handleSetPinnedStatus={handleSetPinnedStatus}
     />
   );
 };
 
 const mapStateToProps = (state) => ({
-  replies: state.forum.replies,
-  gettingReplies: state.forum.gettingReplies,
-  creatingReply: state.forum.creatingReply,
-  currentThread: state.forum.currentThread,
-  gettingThread: state.forum.gettingThread,
-  deletingThread: state.forum.deletingThread,
+  forums: state.feeds.forums,
+  replies: state.thread.replies,
+  gettingReplies: state.thread.gettingReplies,
+  creatingReply: state.thread.creatingReply,
+  createReplyError: state.thread.createReplyError,
+  thread: state.thread.currentThread,
+  gettingThread: state.thread.gettingThread,
+  doneGettingThread: state.thread.doneGettingThread,
+  deletingThread: state.thread.deletingThread,
+  deleteThreadError: state.thread.deleteThreadError,
+  deletingReplyId: state.thread.deletingReplyId,
+  deleteReplyError: state.thread.deleteReplyError,
+  togglingFavorite: state.thread.togglingFavorite,
+  toggleFavoriteError: state.thread.toggleFavoriteError,
+  togglingPin: state.thread.togglingPin,
+  togglePinError: state.thread.togglePinError,
   user: state.auth.user,
   loadingUser: state.auth.loadingUser,
 });
@@ -103,4 +136,7 @@ export default connect(mapStateToProps, {
   favoriteThread,
   unfavoriteThread,
   deleteThread,
+  deleteReply,
+  setThreadPinnedStatus,
+  resetThreadErrors,
 })(React.memo(ThreadContainer));
