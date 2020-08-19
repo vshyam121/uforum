@@ -2,7 +2,11 @@ import React, { useRef } from 'react';
 import './AddTags.scss';
 import { FaPlusCircle } from 'react-icons/fa';
 import Tag from '../../Tag/Tag';
-import { EMPTY_TAG, DUPLICATE_TAG, INCORRECT_FORMAT_TAG } from '../NewThread';
+import {
+  EMPTY_TAG,
+  DUPLICATE_TAG,
+  INCORRECT_FORMAT_TAG,
+} from '../../../containers/NewThreadContainer';
 
 const AddTags = (props) => {
   const { submitTag, deleteTag, tags, setError } = props;
