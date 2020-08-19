@@ -8,16 +8,10 @@ import { Link } from 'react-router-dom';
 const ThreadBox = (props) => {
   const { thread, setCurrentThread } = props;
 
-  console.log(thread);
-
   let tags = null;
   tags = thread.tags.map((tag) => {
     return <Tag key={tag}>{tag}</Tag>;
   });
-
-  const onClickLink = () => {
-    setCurrentThread(thread);
-  };
 
   let userInfo = null;
   if (thread.user.username) {
@@ -35,7 +29,7 @@ const ThreadBox = (props) => {
   return (
     <div className='thread-box'>
       <Link
-        onClick={onClickLink}
+        onClick={() => setCurrentThread(thread)}
         to={{ pathname: `/${thread.forum.slug}/thread/${thread.slug}` }}
         className='thread-box__title'
       >
@@ -60,4 +54,4 @@ const ThreadBox = (props) => {
   );
 };
 
-export default React.memo(ThreadBox);
+export default ThreadBox;

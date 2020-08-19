@@ -1,32 +1,66 @@
 @import '../../../sass/base/variables';
 
 .feed-box {
+  display: flex;
+  flex-direction: column;
   border: 1px solid $border-color;
+  min-height: 15rem;
 
   &__title {
     border-bottom: 1px solid $border-color;
     background-color: $color-grey-light-2;
     height: 3rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding-left: 1rem;
+    padding: 0rem 1rem;
     text-transform: uppercase;
   }
 
   &__loading {
-    height: 15rem;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   &__none {
-    height: 8rem;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.3rem;
     color: $color-grey-dark-3;
     font-weight: 500;
+  }
+
+  &__error {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  &__sort {
+    display: flex;
+  }
+
+  &__sort-type {
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $color-grey-dark-3;
+
+    &:not(:last-child) {
+      margin-right: 1.5rem;
+    }
+
+    &--selected {
+      color: black;
+    }
   }
 }
