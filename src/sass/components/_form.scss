@@ -13,6 +13,7 @@
 
 .form-component {
   width: 40rem;
+  height: 100%;
   padding: 2rem;
   border: 1px solid $border-color;
   display: flex;
@@ -25,21 +26,23 @@
     margin-bottom: 2rem;
   }
 
-  &__form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  &__error {
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
   }
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   &__submit {
     margin: 2rem;
     width: 50%;
-  }
-
-  &__error {
-    color: red;
-    margin-bottom: 2rem;
   }
 }
