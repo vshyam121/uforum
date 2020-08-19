@@ -115,6 +115,12 @@ const RichEditor = (props) => {
         return 'blockquote';
       case 'CODE':
         return 'code';
+      case 'H1':
+        return 'h1';
+      case 'H2':
+        return 'h2';
+      case 'H3':
+        return 'h3';
       default:
         return;
     }
