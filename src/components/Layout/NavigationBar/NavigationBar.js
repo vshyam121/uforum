@@ -9,11 +9,11 @@ const NavigationBar = (props) => {
   const forumSlug = useLocation().pathname;
 
   let forums = null;
-  if (props.forums) {
+  if (props.gettingForums) {
+    forums = <div className='navbar__loading'>Loading...</div>;
+  } else if (props.forums) {
     forums = props.forums.map((forum, index) => {
       let linkClassNames = ['navbar__forum'];
-      console.log(forumSlug);
-      console.log(forum.slug);
       if (forumSlug === `/${forum.slug}`) {
         linkClassNames.push('navbar__forum--selected');
       }
@@ -21,11 +21,11 @@ const NavigationBar = (props) => {
         linkClassNames.push('navbar__forum--selected');
       }
       return (
-        <Link key={forum.slug} className='link' to={`/${forum.slug}`}>
-          <li className={linkClassNames.join(' ')}>
-            <h2>{forum.name}</h2>
-          </li>
-        </Link>
+        <li key={forum.slug} className={linkClassNames.join(' ')}>
+          <Link className='navbar__link link' to={`/${forum.slug}`}>
+            <span>{forum.name}</span>
+          </Link>
+        </li>
       );
     });
   }
@@ -41,7 +41,9 @@ PropTypes.NavigationBar = {
 };
 
 const mapStateToProps = (state) => ({
-  forums: state.forum.forums,
+  forums: state.feeds.forums,
+  gettingForums: state.feeds.gettingForums,
+  getForumsError: state.feeds.getForumsError,
 });
 
 export default connect(mapStateToProps, null)(NavigationBar);
