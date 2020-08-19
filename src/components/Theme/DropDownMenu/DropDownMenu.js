@@ -9,9 +9,16 @@ const DropDownMenu = (props) => {
   return (
     <div className={classNames.join(' ')}>
       <ul className='drop-down-menu__list'>
-        {props.children.map((child) => (
-          <li className='drop-down-menu__item'>{child}</li>
-        ))}
+        {props.children.map((child, index) => {
+          if (child) {
+            return (
+              <li key={index} className='drop-down-menu__item'>
+                {child}
+              </li>
+            );
+          }
+          return null;
+        })}
       </ul>
     </div>
   );
