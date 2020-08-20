@@ -4,7 +4,7 @@ import Tag from '../../Tag/Tag';
 import { FaUser, FaHeart, FaRegHeart, FaTrashAlt } from 'react-icons/fa';
 import { AiFillPushpin, AiOutlinePushpin } from 'react-icons/ai';
 import Moment from 'moment';
-import RichEditor from '../../RichEditor/RichEditor';
+import RichTextEditor from '../../RichTextEditor/RichTextEditor';
 import { ClipLoader } from 'react-spinners';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -109,7 +109,7 @@ const InitialPost = (props) => {
         </div>
         <div className='post__title'>{thread.title}</div>
         <div className='post__content'>
-          <RichEditor readOnly content={thread.content} />
+          <RichTextEditor readOnly content={thread.content} />
         </div>
         <div className='post__bottom'>
           <div className='post__tags'>{tags}</div>

@@ -2,7 +2,7 @@ import React from 'react';
 import './Reply.scss';
 import { FaUser } from 'react-icons/fa';
 import Moment from 'moment';
-import RichEditor from '../../RichEditor/RichEditor';
+import RichTextEditor from '../../RichTextEditor/RichTextEditor';
 import { FaTrashAlt } from 'react-icons/fa';
 import { ClipLoader } from 'react-spinners';
 
@@ -36,7 +36,7 @@ const Reply = (props) => {
       </div>
     );
   } else {
-    replyContent = <RichEditor readOnly content={reply.content} />;
+    replyContent = <RichTextEditor readOnly content={reply.content} />;
   }
 
   return (

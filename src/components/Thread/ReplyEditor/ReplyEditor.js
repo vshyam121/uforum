@@ -1,7 +1,7 @@
 import React from 'react';
-import RichEditor from '../../RichEditor/RichEditor';
+import RichTextEditor from '../../RichTextEditor/RichTextEditor';
 import { ClipLoader } from 'react-spinners';
-import { REPLY } from '../../RichEditor/RichEditor';
+import { REPLY } from '../../RichTextEditor/RichTextEditor';
 
 const ReplyEditor = (props) => {
   const {
@@ -33,7 +33,7 @@ const ReplyEditor = (props) => {
     editor = (
       <div className='thread__editor'>
         <div className='thread__error'>{error}</div>
-        <RichEditor
+        <RichTextEditor
           type={REPLY}
           content={replyContent}
           saveContent={handleSaveReplyContent}

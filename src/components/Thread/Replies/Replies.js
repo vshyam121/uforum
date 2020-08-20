@@ -30,10 +30,9 @@ const Replies = (props) => {
             );
           }
           return (
-            <React.Fragment>
+            <React.Fragment key={reply._id}>
               {replyError}
               <Reply
-                key={reply._id}
                 reply={reply}
                 user={user}
                 handleDeleteReply={handleDeleteReply}
