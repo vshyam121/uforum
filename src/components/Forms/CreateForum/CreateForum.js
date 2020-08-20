@@ -4,7 +4,7 @@ import { ClipLoader } from 'react-spinners';
 import Form from '../../Theme/Form/Form';
 import PropTypes from 'prop-types';
 
-/* Create a form */
+/* Small form for creating a forum */
 const CreateForum = (props) => {
   let form = (
     <Form
@@ -38,8 +38,8 @@ const CreateForum = (props) => {
 };
 
 CreateForum.propTypes = {
-  creatingForum: PropTypes.bool,
-  createdForum: PropTypes.bool,
+  creatingForum: PropTypes.bool.isRequired,
+  createdForum: PropTypes.bool.isRequired,
   error: PropTypes.string,
 };
 

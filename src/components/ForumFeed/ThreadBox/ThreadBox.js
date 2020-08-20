@@ -4,7 +4,9 @@ import Tag from '../../Tag/Tag';
 import { FaUser } from 'react-icons/fa';
 import Moment from 'moment';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+/* Single thread in feed with all thread info */
 const ThreadBox = (props) => {
   const { thread, setCurrentThread } = props;
 
@@ -52,6 +54,19 @@ const ThreadBox = (props) => {
       </div>
     </div>
   );
+};
+
+ThreadBox.propTypes = {
+  thread: PropTypes.shape({
+    user: PropTypes.object.isRequired,
+    forum: PropTypes.object.isRequired,
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    favorites: PropTypes.arrayOf(PropTypes.string).isRequired,
+    replies: PropTypes.arrayOf(PropTypes.string).isRequired,
+    createdAt: PropTypes.string.isRequired,
+  }),
+  setCurrentThread: PropTypes.func.isRequired,
 };
 
 export default ThreadBox;

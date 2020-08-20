@@ -63,9 +63,9 @@ const SignIn = (props) => {
 };
 
 SignIn.propTypes = {
-  loadingUser: PropTypes.bool,
+  loadingUser: PropTypes.bool.isRequired,
   error: PropTypes.object,
-  isAuthenticated: PropTypes.string,
+  isAuthenticated: PropTypes.object,
 };
 
 export default SignIn;

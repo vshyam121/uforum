@@ -2,7 +2,9 @@ import React from 'react';
 import './FeedBox.scss';
 import ThreadBox from '../ThreadBox/ThreadBox';
 import { ClipLoader } from 'react-spinners';
+import PropTypes from 'prop-types';
 
+/* Box containing a list of threads that form a feed */
 const FeedBox = (props) => {
   const {
     title,
@@ -84,6 +86,18 @@ const FeedBox = (props) => {
   );
 
   return feedBox;
+};
+
+FeedBox.propTypes = {
+  title: PropTypes.string.isRequired,
+  threads: PropTypes.arrayOf(PropTypes.object),
+  gettingThreads: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+  setCurrentThread: PropTypes.func.isRequired,
+  handleGetThreads: PropTypes.func,
+  sortingMethod: PropTypes.string,
+  setSortingMethod: PropTypes.func,
+  sort: PropTypes.bool,
 };
 
 export default FeedBox;

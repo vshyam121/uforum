@@ -4,7 +4,9 @@ import FeedBox from './FeedBox/FeedBox';
 import Button from '../Theme/Button/Button';
 import { Link } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
+import PropTypes from 'prop-types';
 
+/* All feeds for a particular forum */
 const ForumFeed = (props) => {
   const {
     forums,
@@ -79,6 +81,24 @@ const ForumFeed = (props) => {
   }
 
   return <div className='forum-feed'>{forumFeedContent}</div>;
+};
+
+ForumFeed.propTypes = {
+  forums: PropTypes.arrayOf(PropTypes.object),
+  forumFound: PropTypes.bool.isRequired,
+  gettingForums: PropTypes.bool.isRequired,
+  getForumsError: PropTypes.string,
+  forumSlug: PropTypes.string,
+  unpinnedThreads: PropTypes.arrayOf(PropTypes.object),
+  gettingUnpinnedThreads: PropTypes.bool.isRequired,
+  getUnpinnedThreadsError: PropTypes.string,
+  pinnedThreads: PropTypes.arrayOf(PropTypes.object),
+  gettingPinnedThreads: PropTypes.bool.isRequired,
+  getPinnedThreadsError: PropTypes.string,
+  setCurrentThread: PropTypes.func.isRequired,
+  handleGetThreads: PropTypes.func.isRequired,
+  sortingMethod: PropTypes.string.isRequired,
+  setSortingMethod: PropTypes.func.isRequired,
 };
 
 export default ForumFeed;
