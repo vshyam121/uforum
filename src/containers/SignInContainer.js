@@ -78,7 +78,7 @@ class SignInContainer extends Component {
 SignInContainer.propTypes = {
   loadingUser: PropTypes.bool,
   error: PropTypes.object,
-  isAuthenticated: PropTypes.string,
+  isAuthenticated: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({

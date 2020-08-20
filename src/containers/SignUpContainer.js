@@ -122,7 +122,7 @@ class SignUpContainer extends Component {
 SignUpContainer.propTypes = {
   loadingUser: PropTypes.bool,
   error: PropTypes.object,
-  isAuthenticated: PropTypes.string,
+  isAuthenticated: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
