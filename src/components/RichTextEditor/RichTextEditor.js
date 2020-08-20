@@ -1,6 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
-import './RichEditor.scss';
+import {
+  EditorState,
+  RichUtils,
+  convertToRaw,
+  convertFromRaw,
+  getDefaultKeyBinding,
+  Modifier,
+} from 'draft-js';
+import './RichTextEditor.scss';
 import { Editor } from 'draft-js';
 import InlineStyleControls from './InlineStyleControls';
 import BlockStyleControls from './BlockStyleControls';
@@ -126,6 +133,25 @@ const RichEditor = (props) => {
     }
   };
 
+  const keyBindingFn = (e) => {
+    if (e.keyCode === 9 /* tab */) {
+      const tabCharacter = '    ';
+      let currentState = editorState;
+      let newContentState = Modifier.replaceText(
+        currentState.getCurrentContent(),
+        currentState.getSelection(),
+        tabCharacter
+      );
+
+      onChange(
+        EditorState.push(currentState, newContentState, 'insert-characters')
+      );
+
+      return 'myeditor-tab';
+    }
+    return getDefaultKeyBinding(e);
+  };
+
   return (
     <div className={classNames.join(' ')}>
       {styleControls}
@@ -133,6 +159,7 @@ const RichEditor = (props) => {
         <Editor
           editorState={editorState}
           customStyleMap={styleMap}
+          keyBindingFn={keyBindingFn}
           blockStyleFn={blockStyleFn}
           handleKeyCommand={handleKeyCommand}
           onChange={onChange}
