@@ -1,9 +1,10 @@
 import React from 'react';
-import './Dashboard.scss';
+import './AdminDashboard.scss';
 import { FaTrashAlt } from 'react-icons/fa';
 import CreateForumContainer from '../../containers/CreateForumContainer';
+import PropTypes from 'prop-types';
 
-const Dashboard = (props) => {
+const AdminDashboard = (props) => {
   const { forums, deleteForum, deletingForumId } = props;
   return (
     <div className='dashboard'>
@@ -42,4 +43,10 @@ const Dashboard = (props) => {
   );
 };
 
-export default Dashboard;
+AdminDashboard.propTypes = {
+  forums: PropTypes.arrayOf(PropTypes.object),
+  deletingForumId: PropTypes.bool.isRequired,
+  deleteForum: PropTypes.func.isRequired,
+};
+
+export default AdminDashboard;

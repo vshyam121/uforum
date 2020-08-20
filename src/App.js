@@ -10,7 +10,7 @@ import SignInContainer from './containers/SignInContainer';
 import SignUpContainer from './containers/SignUpContainer';
 import NewThreadContainer from './containers/NewThreadContainer';
 import UserProfileContainer from './containers/UserProfileContainer';
-import DashboardContainer from './containers/DashboardContainer';
+import AdminDashboardContainer from './containers/AdminDashboardContainer';
 
 function App(props) {
   const { authenticateToken, getAllForums } = props;
@@ -24,7 +24,7 @@ function App(props) {
       <Switch>
         <Route exact path='/signin' component={SignInContainer} />
         <Route exact path='/signup' component={SignUpContainer} />
-        <Route exact path='/admin' component={DashboardContainer} />
+        <Route exact path='/admin' component={AdminDashboardContainer} />
         <Route exact path='/' component={ForumFeedContainer} />
         <Route exact path='/:forumSlug' component={ForumFeedContainer} />
         <Route exact path='/user/:username' component={UserProfileContainer} />
