@@ -16,6 +16,7 @@ const FeedBox = (props) => {
     sortingMethod,
     setSortingMethod,
     sort,
+    hideUser,
   } = props;
 
   const handleSortingMethod = (sortingMethod) => {
@@ -39,6 +40,7 @@ const FeedBox = (props) => {
           key={thread._id}
           thread={thread}
           setCurrentThread={setCurrentThread}
+          hideUser={hideUser}
         />
       );
     });
@@ -98,6 +100,7 @@ FeedBox.propTypes = {
   sortingMethod: PropTypes.string,
   setSortingMethod: PropTypes.func,
   sort: PropTypes.bool,
+  hideUser: PropTypes.bool,
 };
 
 export default FeedBox;

@@ -59,6 +59,7 @@ const UserProfile = (props) => {
         gettingThreads={gettingUserThreads}
         setCurrentThread={setCurrentThread}
         error={getUserThreadsError}
+        hideUser
       />
     </div>
   );

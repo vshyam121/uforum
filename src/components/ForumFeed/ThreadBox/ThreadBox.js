@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 /* Single thread in feed with all thread info */
 const ThreadBox = (props) => {
-  const { thread, setCurrentThread } = props;
+  const { hideUser, thread, setCurrentThread } = props;
 
   let tags = null;
   tags = thread.tags.map((tag) => {
@@ -16,7 +16,7 @@ const ThreadBox = (props) => {
   });
 
   let userInfo = null;
-  if (thread.user.username) {
+  if (thread.user.username && !hideUser) {
     userInfo = (
       <Link
         to={`/user/${thread.user.username}`}
@@ -57,6 +57,7 @@ const ThreadBox = (props) => {
 };
 
 ThreadBox.propTypes = {
+  hideUser: PropTypes.bool,
   thread: PropTypes.shape({
     user: PropTypes.object.isRequired,
     forum: PropTypes.object.isRequired,
