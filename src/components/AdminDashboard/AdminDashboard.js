@@ -4,6 +4,7 @@ import { FaTrashAlt } from 'react-icons/fa';
 import CreateForumContainer from '../../containers/CreateForumContainer';
 import PropTypes from 'prop-types';
 
+/* Admin dashboard component for deleting and creating forums */
 const AdminDashboard = (props) => {
   const { forums, deleteForum, deletingForumId } = props;
   return (
