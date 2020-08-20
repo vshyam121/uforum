@@ -39,7 +39,7 @@ const Header = (props) => {
     if (user.role === 'admin') {
       dashboard = (
         <div className='header__menu-item' onClick={handleClickDashboard}>
-          <span>Dashboard</span>
+          <span>Admin Dashboard</span>
         </div>
       );
     }
