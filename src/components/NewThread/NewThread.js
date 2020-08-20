@@ -1,7 +1,7 @@
 import React from 'react';
 import './NewThread.scss';
 import AddTags from './AddTags/AddTags';
-import RichEditor, { THREAD } from '../../components/RichEditor/RichEditor';
+import RichTextEditor, { THREAD } from '../RichTextEditor/RichTextEditor';
 import { ClipLoader } from 'react-spinners';
 import {
   TITLE_TOO_SHORT,
@@ -93,7 +93,7 @@ const NewThread = (props) => {
               ? createThreadError
               : null}
           </div>
-          <RichEditor type={THREAD} saveContent={handleSavePostContent} />
+          <RichTextEditor type={THREAD} saveContent={handleSavePostContent} />
         </div>
       </React.Fragment>
     );
