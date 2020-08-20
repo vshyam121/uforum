@@ -1,12 +1,10 @@
 import React from 'react';
 import './NavigationBar.scss';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const NavigationBar = (props) => {
-  const forumSlug = useLocation().pathname;
+  const { forumSlug } = props;
 
   let forums = null;
   if (props.gettingForums) {
@@ -40,10 +38,4 @@ PropTypes.NavigationBar = {
   forums: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  forums: state.feeds.forums,
-  gettingForums: state.feeds.gettingForums,
-  getForumsError: state.feeds.getForumsError,
-});
-
-export default connect(mapStateToProps, null)(NavigationBar);
+export default NavigationBar;

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Layout from './components/Layout/Layout';
+import LayoutContainer from './containers/LayoutContainer';
 import ForumFeedContainer from './containers/ForumFeedContainer';
 import ThreadContainer from './containers/ThreadContainer';
 import { Switch, Route } from 'react-router-dom';
@@ -20,7 +20,7 @@ function App(props) {
   }, [authenticateToken, getAllForums]);
 
   return (
-    <Layout>
+    <LayoutContainer>
       <Switch>
         <Route exact path='/signin' component={SignInContainer} />
         <Route exact path='/signup' component={SignUpContainer} />
@@ -39,7 +39,7 @@ function App(props) {
           component={NewThreadContainer}
         />
       </Switch>
-    </Layout>
+    </LayoutContainer>
   );
 }
 
