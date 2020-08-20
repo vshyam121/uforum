@@ -1,13 +1,13 @@
 import React from 'react';
 import './Layout.scss';
-import Header from './Header/Header';
+import HeaderContainer from '../../containers/HeaderContainer';
 import NavigationBar from './NavigationBar/NavigationBar';
 
 const Layout = (props) => {
   return (
     //<div className='layout-container'>
     <div className='layout'>
-      <Header />
+      <HeaderContainer />
       <NavigationBar />
       <main className='main'>{props.children}</main>
     </div>

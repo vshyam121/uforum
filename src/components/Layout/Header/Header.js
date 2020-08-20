@@ -1,32 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Header.scss';
 import UForumLogo from '../../../images/uforum.png';
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import DropDownMenu from '../../Theme/DropDownMenu/DropDownMenu';
-import { signOut } from '../../../store/auth/actions';
+import PropTypes from 'prop-types';
 
 const Header = (props) => {
-  const [showMenu, setShowMenu] = useState(false);
-
-  const { user } = props;
-
-  const handleMenuToggle = () => {
-    setShowMenu((prevShowMenu) => !prevShowMenu);
-  };
-
-  const handleClickDashboard = () => {
-    props.history.push('/admin');
-  };
-
-  const handleClickUserProfile = () => {
-    props.history.push(`/user/${user.username}`);
-  };
-
-  const handleClickSignOut = () => {
-    props.signOut();
-  };
+  const {
+    user,
+    showMenu,
+    handleClickDashboard,
+    handleClickSignOut,
+    handleClickUserProfile,
+    handleMenuToggle,
+  } = props;
 
   let userInfo = (
     <Link className='header__auth link' to='/signin'>
@@ -73,8 +61,11 @@ const Header = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-});
+Header.propTypes = {
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+  }),
+};
 
-export default connect(mapStateToProps, { signOut })(withRouter(Header));
+export default Header;
