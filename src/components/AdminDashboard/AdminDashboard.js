@@ -46,7 +46,7 @@ const AdminDashboard = (props) => {
 
 AdminDashboard.propTypes = {
   forums: PropTypes.arrayOf(PropTypes.object),
-  deletingForumId: PropTypes.bool.isRequired,
+  deletingForumId: PropTypes.string,
   deleteForum: PropTypes.func.isRequired,
 };
 

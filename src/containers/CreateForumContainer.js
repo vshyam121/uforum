@@ -68,6 +68,8 @@ class CreateForumContainer extends Component {
 
 CreateForumContainer.propTypes = {
   error: PropTypes.string,
+  createdForum: PropTypes.bool.isRequired,
+  creatingForum: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
