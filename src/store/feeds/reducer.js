@@ -7,6 +7,7 @@ const initialState = {
 
   creatingForum: false,
   createForumError: null,
+  createdForum: false,
   deletingForumId: null,
   deleteForumError: null,
 
