@@ -2,6 +2,7 @@ import React from 'react';
 import RichTextEditor from '../../RichTextEditor/RichTextEditor';
 import { ClipLoader } from 'react-spinners';
 import { REPLY } from '../../RichTextEditor/RichTextEditor';
+import PropTypes from 'prop-types';
 
 const ReplyEditor = (props) => {
   const {
@@ -43,6 +44,16 @@ const ReplyEditor = (props) => {
   }
 
   return editor;
+};
+
+ReplyEditor.propTypes = {
+  loadingUser: PropTypes.bool.isRequired,
+  creatingReply: PropTypes.bool.isRequired,
+  noReplyError: PropTypes.string,
+  user: PropTypes.object,
+  createReplyError: PropTypes.string,
+  replyContent: PropTypes.string,
+  handleSaveReplyContent: PropTypes.func.isRequired,
 };
 
 export default ReplyEditor;

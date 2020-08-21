@@ -5,7 +5,9 @@ import { setCurrentThread } from '../store/thread/actions';
 import { useParams } from 'react-router';
 import ForumFeed from '../components/ForumFeed/ForumFeed';
 import find from 'lodash/find';
+import PropTypes from 'prop-types';
 
+/* Container for a forum's feed of threads */
 const ForumFeedContainer = (props) => {
   const currentForumSlug = useParams().forumSlug;
 
@@ -59,6 +61,20 @@ const ForumFeedContainer = (props) => {
   );
 };
 
+ForumFeedContainer.propTypes = {
+  forums: PropTypes.array,
+  gettingForums: PropTypes.bool.isRequired,
+  getForumsError: PropTypes.string,
+
+  gettingUnpinnedThreads: PropTypes.bool.isRequired,
+  unpinnedThreads: PropTypes.array,
+  getUnpinnedThreadsError: PropTypes.string,
+
+  gettingPinnedThreads: PropTypes.bool.isRequired,
+  pinnedThreads: PropTypes.array,
+  getPinnedThreadsError: PropTypes.string,
+};
+
 const mapStateToProps = (state) => ({
   forums: state.feeds.forums,
   gettingForums: state.feeds.gettingForums,
@@ -72,6 +88,7 @@ const mapStateToProps = (state) => ({
   pinnedThreads: state.feeds.pinnedThreads,
   getPinnedThreadsError: state.feeds.getPinnedThreadsError,
 });
+
 export default connect(mapStateToProps, {
   getUnpinnedThreads,
   getPinnedThreads,

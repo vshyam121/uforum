@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SignUp from '../components/Forms/SignUp/SignUp';
 
-/* User sign up form */
+/* User sign up form container */
 class SignUpContainer extends Component {
   state = {
     form: {

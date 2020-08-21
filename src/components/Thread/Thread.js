@@ -4,7 +4,9 @@ import ReplyEditor from './ReplyEditor/ReplyEditor';
 import InitialPost from './InitialPost/InitialPost';
 import Replies from './Replies/Replies';
 import { ClipLoader } from 'react-spinners';
+import PropTypes from 'prop-types';
 
+/* Component for single thread, editor for new reply, and all replies for thread */
 const Thread = (props) => {
   let threadContent = null;
   if (props.gettingThread || props.deletingThread) {
@@ -48,6 +50,7 @@ const Thread = (props) => {
           noReplyError={props.noReplyError}
           creatingReply={props.creatingReply}
           user={props.user}
+          loadingUser={props.loadingUser}
           createReplyError={props.createReplyError}
           replyContent={props.replyContent}
           handleSaveReplyContent={props.handleSaveReplyContent}
@@ -67,4 +70,26 @@ const Thread = (props) => {
   return <div className='thread'>{threadContent}</div>;
 };
 
-export default React.memo(Thread);
+Thread.propTypes = {
+  thread: PropTypes.object,
+  user: PropTypes.object,
+  togglingFavorite: PropTypes.bool.isRequired,
+  togglingPin: PropTypes.bool.isRequired,
+  handleFavoriteThread: PropTypes.func.isRequired,
+  handleUnfavoriteThread: PropTypes.func.isRequired,
+  handleDeleteThread: PropTypes.func.isRequired,
+  handleSetPinnedStatus: PropTypes.func.isRequired,
+  deletingThread: PropTypes.bool.isRequired,
+  noReplyError: PropTypes.string,
+  creatingReply: PropTypes.bool.isRequired,
+  createReplyError: PropTypes.string,
+  replyContent: PropTypes.string,
+  handleSaveReplyContent: PropTypes.func.isRequired,
+  replies: PropTypes.arrayOf(PropTypes.object),
+  gettingReplies: PropTypes.bool.isRequired,
+  deletingReplyId: PropTypes.string,
+  deleteReplyError: PropTypes.string,
+  handleDeleteReply: PropTypes.func.isRequired,
+};
+
+export default Thread;

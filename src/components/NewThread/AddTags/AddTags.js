@@ -7,12 +7,12 @@ import {
   DUPLICATE_TAG,
   INCORRECT_FORMAT_TAG,
 } from '../../../containers/NewThreadContainer';
+import PropTypes from 'prop-types';
 
+/* Component for validating and adding tags */
 const AddTags = (props) => {
   const { submitTag, deleteTag, tags, setError } = props;
   const inputRef = useRef(null);
-
-  //const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,8 +26,7 @@ const AddTags = (props) => {
     } else if (!/^([a-z0-9]){4,20}$/i.test(incomingTag)) {
       setError(INCORRECT_FORMAT_TAG);
       return;
-    }
-    if (incomingTag.length > 0 && !tags.includes(incomingTag)) {
+    } else {
       submitTag(incomingTag);
       setError(null);
       inputRef.current.value = '';
@@ -60,6 +59,13 @@ const AddTags = (props) => {
       </form>
     </div>
   );
+};
+
+AddTags.propTypes = {
+  setError: PropTypes.func.isRequired,
+  tags: PropTypes.array.isRequired,
+  submitTag: PropTypes.func.isRequired,
+  deleteTag: PropTypes.func.isRequired,
 };
 
 export default AddTags;

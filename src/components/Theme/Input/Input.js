@@ -7,12 +7,7 @@ const Input = (props) => {
   let inputElement = null;
   const inputClasses = ['input__element'];
   let validationError = null;
-  if (
-    props.invalid &&
-    props.shouldValidate &&
-    //props.touched &&
-    props.formSubmitted
-  ) {
+  if (props.invalid && props.shouldValidate && props.formSubmitted) {
     inputClasses.push('input__invalid');
     validationError = (
       <p className='input__error-message'>{props.errorMessage}</p>

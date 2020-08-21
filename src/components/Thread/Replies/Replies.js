@@ -1,6 +1,7 @@
 import React from 'react';
 import { ClipLoader } from 'react-spinners';
 import Reply from '../Reply/Reply';
+import PropTypes from 'prop-types';
 
 const Replies = (props) => {
   const {
@@ -47,6 +48,15 @@ const Replies = (props) => {
   }
 
   return repliesContent;
+};
+
+Replies.propTypes = {
+  gettingReplies: PropTypes.bool.isRequired,
+  replies: PropTypes.array,
+  deleteReplyError: PropTypes.string,
+  deletingReplyId: PropTypes.string,
+  user: PropTypes.object,
+  handleDeleteReply: PropTypes.func.isRequired,
 };
 
 export default Replies;

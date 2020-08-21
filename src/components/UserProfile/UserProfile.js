@@ -3,6 +3,7 @@ import './UserProfile.scss';
 import FeedBox from '../ForumFeed/FeedBox/FeedBox';
 import { FaUser } from 'react-icons/fa';
 import { ClipLoader } from 'react-spinners';
+import PropTypes from 'prop-types';
 
 const UserProfile = (props) => {
   const {
@@ -63,6 +64,16 @@ const UserProfile = (props) => {
       />
     </div>
   );
+};
+
+UserProfile.propTypes = {
+  userThreads: PropTypes.array,
+  gettingUserThreads: PropTypes.bool.isRequired,
+  getUserThreadsError: PropTypes.string,
+  userProfile: PropTypes.object,
+  gettingUserProfile: PropTypes.bool.isRequired,
+  getUserProfileError: PropTypes.string,
+  setCurrentThread: PropTypes.func.isRequired,
 };
 
 export default UserProfile;

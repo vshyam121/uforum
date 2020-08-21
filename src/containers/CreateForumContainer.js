@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CreateForum from '../components/Forms/CreateForum/CreateForum';
 
-/* Create forum form */
+/* Create forum form container*/
 class CreateForumContainer extends Component {
   initialForm = {
     forumName: {

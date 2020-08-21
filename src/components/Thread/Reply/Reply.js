@@ -5,6 +5,7 @@ import Moment from 'moment';
 import RichTextEditor from '../../RichTextEditor/RichTextEditor';
 import { FaTrashAlt } from 'react-icons/fa';
 import { ClipLoader } from 'react-spinners';
+import PropTypes from 'prop-types';
 
 const Reply = (props) => {
   const {
@@ -54,6 +55,14 @@ const Reply = (props) => {
       <div className='reply__content'>{replyContent} </div>
     </div>
   );
+};
+
+Reply.propTypes = {
+  user: PropTypes.object,
+  reply: PropTypes.object,
+  handleDeleteReply: PropTypes.func.isRequired,
+  deletingReplyId: PropTypes.string,
+  deleteReplyError: PropTypes.string,
 };
 
 export default Reply;

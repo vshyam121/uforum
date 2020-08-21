@@ -1,10 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Dashboard from '../components/AdminDashboard/AdminDashboard';
+import AdminDashboard from '../components/AdminDashboard/AdminDashboard';
 import { deleteForum } from '../store/feeds/actions';
+import PropTypes from 'prop-types';
 
+/* Container for admin's dashboard for creating/deleting forums */
 const AdminDashboardContainer = (props) => {
-  return <Dashboard {...props} />;
+  return <AdminDashboard {...props} />;
+};
+
+AdminDashboardContainer.propTypes = {
+  forums: PropTypes.array,
+  deletingForumId: PropTypes.string,
+  createForumError: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
@@ -12,6 +20,7 @@ const mapStateToProps = (state) => ({
   deletingForumId: state.feeds.deletingForumId,
   createForumError: state.feeds.createForumError,
 });
+
 export default connect(mapStateToProps, { deleteForum })(
   AdminDashboardContainer
 );

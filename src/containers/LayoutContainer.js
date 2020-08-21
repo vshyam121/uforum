@@ -5,6 +5,7 @@ import { signOut } from '../store/auth/actions';
 import Layout from '../components/Layout/Layout';
 import PropTypes from 'prop-types';
 
+/* Container for header and navigation bar */
 const LayoutContainer = (props) => {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -46,6 +47,9 @@ LayoutContainer.propTypes = {
     username: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
   }),
+  forums: PropTypes.array,
+  gettingForums: PropTypes.bool.isRequired,
+  getForumsError: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

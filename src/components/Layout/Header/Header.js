@@ -66,6 +66,11 @@ Header.propTypes = {
     username: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
   }),
+  showMenu: PropTypes.bool.isRequired,
+  handleClickDashboard: PropTypes.func.isRequired,
+  handleClickSignOut: PropTypes.func.isRequired,
+  handleClickUserProfile: PropTypes.func.isRequired,
+  handleMenuToggle: PropTypes.func.isRequired,
 };
 
 export default Header;

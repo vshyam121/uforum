@@ -36,6 +36,7 @@ const NavigationBar = (props) => {
 
 PropTypes.NavigationBar = {
   forums: PropTypes.array.isRequired,
+  forumSlug: PropTypes.string.isRequired,
 };
 
 export default NavigationBar;

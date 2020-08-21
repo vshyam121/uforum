@@ -7,7 +7,9 @@ import Moment from 'moment';
 import RichTextEditor from '../../RichTextEditor/RichTextEditor';
 import { ClipLoader } from 'react-spinners';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+/* Component to show the initial post that starts a thread */
 const InitialPost = (props) => {
   const {
     thread,
@@ -126,4 +128,16 @@ const InitialPost = (props) => {
   return <div className='post'>{post}</div>;
 };
 
-export default React.memo(withRouter(InitialPost));
+InitialPost.propTypes = {
+  thread: PropTypes.object,
+  user: PropTypes.object,
+  handleFavoriteThread: PropTypes.func.isRequired,
+  handleUnfavoriteThread: PropTypes.func.isRequired,
+  handleDeleteThread: PropTypes.func.isRequired,
+  handleSetPinnedStatus: PropTypes.func.isRequired,
+  deletingThread: PropTypes.bool.isRequired,
+  togglingFavorite: PropTypes.bool.isRequired,
+  togglingPin: PropTypes.bool.isRequired,
+};
+
+export default withRouter(InitialPost);

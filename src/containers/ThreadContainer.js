@@ -15,6 +15,7 @@ import {
 } from '../store/thread/actions';
 import find from 'lodash/find';
 
+/* Container for thread, with initial post, new reply editor and list of replies */
 const ThreadContainer = (props) => {
   const { forumSlug, threadSlug } = useParams();
   const {

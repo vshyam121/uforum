@@ -4,6 +4,7 @@ import { createThread, resetCreateThreadError } from '../store/thread/actions';
 import find from 'lodash/find';
 import { useParams } from 'react-router-dom';
 import NewThread from '../components/NewThread/NewThread';
+import PropTypes from 'prop-types';
 
 export const TITLE_TOO_SHORT = 'TITLE_TOO_SHORT';
 export const NO_CONTENT = 'NO_CONTENT';
@@ -12,6 +13,7 @@ export const EMPTY_TAG = 'EMPTY_TAG';
 export const DUPLICATE_TAG = 'DUPLICATE_TAG';
 export const INCORRECT_FORMAT_TAG = 'INCORRECT_FORMAT_TAG';
 
+/* Container for creating a new thread */
 const NewThreadContainer = (props) => {
   const [tags, setTags] = useState([]);
 
@@ -74,6 +76,14 @@ const NewThreadContainer = (props) => {
       submitTag={submitTag}
     />
   );
+};
+
+NewThreadContainer.propTypes = {
+  forums: PropTypes.array,
+  user: PropTypes.object,
+  loadingUser: PropTypes.bool.isRequired,
+  creatingThread: PropTypes.bool.isRequired,
+  createThreadError: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

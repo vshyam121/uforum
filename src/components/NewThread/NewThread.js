@@ -11,7 +11,9 @@ import {
   EMPTY_TAG,
   INCORRECT_FORMAT_TAG,
 } from '../../containers/NewThreadContainer';
+import PropTypes from 'prop-types';
 
+/* Component to create new thread */
 const NewThread = (props) => {
   const {
     user,
@@ -100,6 +102,21 @@ const NewThread = (props) => {
   }
 
   return <div className='new-thread'>{newThread}</div>;
+};
+
+NewThread.propTypes = {
+  user: PropTypes.object,
+  loadingUser: PropTypes.bool.isRequired,
+  creatingThread: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  handleSetTitle: PropTypes.func.isRequired,
+  error: PropTypes.string,
+  createThreadError: PropTypes.string,
+  setError: PropTypes.func.isRequired,
+  handleSavePostContent: PropTypes.func.isRequired,
+  tags: PropTypes.array.isRequired,
+  submitTag: PropTypes.func.isRequired,
+  deleteTag: PropTypes.func.isRequired,
 };
 
 export default NewThread;
