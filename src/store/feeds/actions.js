@@ -27,12 +27,15 @@ export const createForumFailed = (err) => {
   return (dispatch) => {
     let error = null;
     if (err) {
+      //Check for unique validation error for any field
       if (err.response && err.response.data.error.includes('unique')) {
         error = 'Forum name must be unique.';
       } else if (err.message) {
         error = err.message;
       }
-    } else {
+    }
+    //Default to general error
+    else {
       error = 'Unable to create a forum. Please try again later.';
     }
     dispatch({
@@ -115,9 +118,13 @@ export const getUnpinnedThreads = (forumId, sortingMethod = 'date') => {
   return (dispatch) => {
     dispatch({ type: actionTypes.GET_UNPINNED_THREADS_START });
     let url = `/forums/${forumId}/threads?pinned=false`;
-    if (!sortingMethod || sortingMethod === 'date') {
+
+    //Default to sort by date
+    if (sortingMethod === 'date') {
       url += '&sorting_method=date';
-    } else if (sortingMethod === 'popularity') {
+    }
+    //Otherwise, sort by popularity
+    else if (sortingMethod === 'popularity') {
       url += '&sorting_method=popularity';
     }
     return axios
