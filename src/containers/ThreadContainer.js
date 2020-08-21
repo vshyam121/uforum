@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Thread from '../components/Thread/Thread';
 import { connect } from 'react-redux';
@@ -34,22 +34,17 @@ const ThreadContainer = (props) => {
     resetThreadErrors,
   } = props;
 
-  const usePrevious = (value) => {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  };
-
-  const previousThread = usePrevious(thread);
-
   useEffect(() => {
+    //If current thread is not set, get it using the slug
     if (!thread) {
       getThread(threadSlug);
-    } else if (!previousThread || thread._id !== previousThread._id) {
+    }
+    //If current thread is set, then only get replies
+    else {
       getReplies(thread._id);
     }
+
+    //Clean up all error state for thread
     return () => {
       resetThreadErrors();
     };
@@ -57,7 +52,6 @@ const ThreadContainer = (props) => {
     getThread,
     getReplies,
     thread,
-    previousThread,
     threadSlug,
     deletingReply,
     resetThreadErrors,

@@ -20,21 +20,29 @@ const ForumFeedContainer = (props) => {
 
   useEffect(() => {
     let forumId = null;
+    //Only if able to get forums
     if (forums) {
+      //If a forum slug exists
       if (currentForumSlug) {
         const forum = find(forums, { slug: currentForumSlug });
+        //If slug matches a forum, then set forum slug
         if (forum) {
           forumId = forum._id;
           setForumSlug(forum.slug);
         }
-      } else if (forums.length > 0) {
+      }
+      //Otherwise, default to first forum in array of forums
+      else if (forums.length > 0) {
         forumId = forums[0]._id;
         setForumSlug(forums[0].slug);
       }
 
+      //If no matching forum id is found, then set forum not found
       if (!forumId) {
         setForumFound(false);
-      } else {
+      }
+      //If matching forum id is found, set state based on forumId
+      else {
         setForumFound(true);
         setForumId(forumId);
         setSortingMethod('date');
