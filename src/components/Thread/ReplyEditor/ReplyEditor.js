@@ -49,7 +49,7 @@ const ReplyEditor = (props) => {
 ReplyEditor.propTypes = {
   loadingUser: PropTypes.bool.isRequired,
   creatingReply: PropTypes.bool.isRequired,
-  noReplyError: PropTypes.string,
+  noReplyError: PropTypes.bool,
   user: PropTypes.object,
   createReplyError: PropTypes.string,
   replyContent: PropTypes.string,

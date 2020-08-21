@@ -80,7 +80,7 @@ Thread.propTypes = {
   handleDeleteThread: PropTypes.func.isRequired,
   handleSetPinnedStatus: PropTypes.func.isRequired,
   deletingThread: PropTypes.bool.isRequired,
-  noReplyError: PropTypes.string,
+  noReplyError: PropTypes.bool,
   creatingReply: PropTypes.bool.isRequired,
   createReplyError: PropTypes.string,
   replyContent: PropTypes.string,
