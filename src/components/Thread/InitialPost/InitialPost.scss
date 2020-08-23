@@ -1,4 +1,5 @@
 @import '../../../sass/base/variables';
+@import '../../../sass/abstracts/mixins';
 
 .post {
   display: flex;
@@ -59,10 +60,18 @@
     display: flex;
     justify-content: space-between;
     margin-top: 2rem;
+
+    @include respond(phone) {
+      flex-direction: column;
+    }
   }
 
   &__actions {
     display: flex;
+
+    @include respond(phone) {
+      margin-top: 1rem;
+    }
   }
 
   &__action {
