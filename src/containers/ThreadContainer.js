@@ -111,7 +111,7 @@ const mapStateToProps = (state) => ({
   createReplyError: state.thread.createReplyError,
   thread: state.thread.currentThread,
   gettingThread: state.thread.gettingThread,
-  doneGettingThread: state.thread.doneGettingThread,
+  getThreadError: state.thread.getThreadError,
   deletingThread: state.thread.deletingThread,
   deleteThreadError: state.thread.deleteThreadError,
   deletingReplyId: state.thread.deletingReplyId,
