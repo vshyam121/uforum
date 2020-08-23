@@ -72,8 +72,7 @@ export const getThread = (threadSlug) => {
 export const getThreadFailed = (err) => {
   return {
     type: actionTypes.GET_THREAD_FAILED,
-    error:
-      (err && err.message) || 'Unable to get thread. Please try again later.',
+    error: (err && err.message) || 'Thread not found.',
   };
 };
 
