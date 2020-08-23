@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/uforum/precache-manifest.ff213a22594692e381ece12b9a736258.js"
+  "/uforum/precache-manifest.8ad4ca27c930c6f0d990c25e94f3322f.js"
 );
 
 self.addEventListener('message', (event) => {

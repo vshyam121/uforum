@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8f690d618d18cb1335f38beeded0290f",
+    "revision": "ab1a96e79911d39684bdbf6e677e9f1d",
     "url": "/uforum/index.html"
   },
   {
-    "revision": "339f628353e29c039239",
+    "revision": "4ae15f93b381fb37e37d",
     "url": "/uforum/static/css/main.fa8ab9dd.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uforum/static/js/2.3a1fb224.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "339f628353e29c039239",
-    "url": "/uforum/static/js/main.ce676348.chunk.js"
+    "revision": "4ae15f93b381fb37e37d",
+    "url": "/uforum/static/js/main.3d63cf7a.chunk.js"
   },
   {
     "revision": "6b98f8f7f4b020d5035e",
