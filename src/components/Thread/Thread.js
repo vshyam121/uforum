@@ -15,8 +15,10 @@ const Thread = (props) => {
         <ClipLoader size={50} />
       </div>
     );
-  } else if (!props.thread && props.doneGettingThread) {
-    threadContent = <div className='thread__not-found'>Thread not found.</div>;
+  } else if (props.getThreadError) {
+    threadContent = (
+      <div className='thread__not-found'>{props.getThreadError}</div>
+    );
   } else {
     let error = null;
     if (
@@ -79,7 +81,10 @@ Thread.propTypes = {
   handleUnfavoriteThread: PropTypes.func.isRequired,
   handleDeleteThread: PropTypes.func.isRequired,
   handleSetPinnedStatus: PropTypes.func.isRequired,
+  gettingThread: PropTypes.bool.isRequired,
+  getThreadError: PropTypes.string,
   deletingThread: PropTypes.bool.isRequired,
+  deleteThreadError: PropTypes.string,
   noReplyError: PropTypes.bool,
   creatingReply: PropTypes.bool.isRequired,
   createReplyError: PropTypes.string,
