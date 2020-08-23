@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/uforum/static/css/main.fa8ab9dd.chunk.css",
+    "main.css": "/uforum/static/css/main.59a9aa4d.chunk.css",
     "main.js": "/uforum/static/js/main.7fd6345d.chunk.js",
     "main.js.map": "/uforum/static/js/main.7fd6345d.chunk.js.map",
     "runtime-main.js": "/uforum/static/js/runtime-main.f090c8b6.js",
@@ -8,15 +8,15 @@
     "static/js/2.3a1fb224.chunk.js": "/uforum/static/js/2.3a1fb224.chunk.js",
     "static/js/2.3a1fb224.chunk.js.map": "/uforum/static/js/2.3a1fb224.chunk.js.map",
     "index.html": "/uforum/index.html",
-    "precache-manifest.ea75f3ed4af80ad925b728e72d9bc5f9.js": "/uforum/precache-manifest.ea75f3ed4af80ad925b728e72d9bc5f9.js",
+    "precache-manifest.9d855e2d09b077ad55543d9fb69c9628.js": "/uforum/precache-manifest.9d855e2d09b077ad55543d9fb69c9628.js",
     "service-worker.js": "/uforum/service-worker.js",
-    "static/css/main.fa8ab9dd.chunk.css.map": "/uforum/static/css/main.fa8ab9dd.chunk.css.map",
+    "static/css/main.59a9aa4d.chunk.css.map": "/uforum/static/css/main.59a9aa4d.chunk.css.map",
     "static/js/2.3a1fb224.chunk.js.LICENSE.txt": "/uforum/static/js/2.3a1fb224.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f090c8b6.js",
     "static/js/2.3a1fb224.chunk.js",
-    "static/css/main.fa8ab9dd.chunk.css",
+    "static/css/main.59a9aa4d.chunk.css",
     "static/js/main.7fd6345d.chunk.js"
   ]
 }
