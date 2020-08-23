@@ -70,14 +70,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         gettingThread: false,
-        doneGettingThread: true,
         currentThread: action.currentThread,
       };
     case actionTypes.GET_THREAD_FAILED:
       return {
         ...state,
         gettingThread: false,
-        doneGettingThread: true,
         currentThread: null,
         getThreadError: action.error,
       };
