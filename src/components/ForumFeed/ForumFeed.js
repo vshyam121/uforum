@@ -27,7 +27,7 @@ const ForumFeed = (props) => {
   } = props;
 
   let forumFeedBoxContent = null;
-  if (gettingForums || !forums) {
+  if (gettingForums) {
     forumFeedBoxContent = (
       <div className='forum-feed__loading'>
         <ClipLoader size={50} />
