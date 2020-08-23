@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 
 const initialState = {
   forums: null,
-  gettingForums: false,
+  gettingForums: true,
   getForumsError: null,
 
   creatingForum: false,
