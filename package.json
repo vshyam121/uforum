@@ -27,7 +27,6 @@
     "slate-plain-serializer": "^0.7.13",
     "slate-react": "^0.58.4"
   },
-  "homepage": "https://vshyam121.github.io/uforum",
   "scripts": {
     "start": "serve -s build",
     "build": "react-scripts build",
