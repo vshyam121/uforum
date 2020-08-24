@@ -74,7 +74,7 @@ const NewThread = (props) => {
           />
           <div className='new-thread__error'>
             {error === TITLE_TOO_SHORT
-              ? 'Title has to be at least 15 chars long'
+              ? 'Title has to be at least 4 chars long'
               : null}
           </div>
           <div className='new-thread__tags'>

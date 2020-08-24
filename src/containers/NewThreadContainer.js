@@ -40,7 +40,7 @@ const NewThreadContainer = (props) => {
   };
 
   const handleSavePostContent = (content, contentHasChanged) => {
-    if (title.length < 15) {
+    if (title.length < 4) {
       setError(TITLE_TOO_SHORT);
       return;
     } else if (tags.length === 0) {
