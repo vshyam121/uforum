@@ -10,12 +10,14 @@ const AdminDashboardContainer = (props) => {
 };
 
 AdminDashboardContainer.propTypes = {
+  user: PropTypes.object,
   forums: PropTypes.array,
   deletingForumId: PropTypes.string,
   createForumError: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
+  user: state.feeds.user,
   forums: state.feeds.forums,
   deletingForumId: state.feeds.deletingForumId,
   createForumError: state.feeds.createForumError,

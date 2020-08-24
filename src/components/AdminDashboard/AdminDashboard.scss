@@ -53,4 +53,14 @@
     font-size: 1.8rem;
     margin-right: 0.5rem;
   }
+
+  &__privileges {
+    height: 20rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: $color-grey-dark-3;
+  }
 }
