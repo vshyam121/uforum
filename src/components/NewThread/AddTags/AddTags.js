@@ -23,7 +23,7 @@ const AddTags = (props) => {
     } else if (tags.includes(incomingTag)) {
       setError(DUPLICATE_TAG);
       return;
-    } else if (!/^([a-z0-9]){4,20}$/i.test(incomingTag)) {
+    } else if (!/^([a-z0-9]){3,20}$/i.test(incomingTag)) {
       setError(INCORRECT_FORMAT_TAG);
       return;
     } else {

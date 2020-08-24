@@ -43,7 +43,7 @@ const NewThread = (props) => {
       break;
     case INCORRECT_FORMAT_TAG:
       tagsError =
-        'Tag can only contain letters and numbers. Spaces and special characters are not allowed. Min 4 chars and max 20 characters.';
+        'Tag can only contain letters and numbers. Spaces and special characters are not allowed. Min 3 chars and max 20 characters.';
       break;
     default:
   }
@@ -74,7 +74,7 @@ const NewThread = (props) => {
           />
           <div className='new-thread__error'>
             {error === TITLE_TOO_SHORT
-              ? 'Title has to be at least 4 chars long'
+              ? 'Title has to be at least 3 chars long'
               : null}
           </div>
           <div className='new-thread__tags'>
