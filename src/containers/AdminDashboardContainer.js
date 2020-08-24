@@ -17,7 +17,7 @@ AdminDashboardContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.feeds.user,
+  user: state.auth.user,
   forums: state.feeds.forums,
   deletingForumId: state.feeds.deletingForumId,
   createForumError: state.feeds.createForumError,
