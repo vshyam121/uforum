@@ -26,6 +26,9 @@ export const authTokenFailed = () => {
 /* Successfully authenticated user and received token/userid */
 export const authSuccess = (authData) => {
   return (dispatch) => {
+    if (authData.token) {
+      localStorage.setItem('token', authData.token);
+    }
     dispatch({ type: actionTypes.AUTH_SUCCESS, user: authData.user });
 
     //Set automatic sign out
@@ -52,13 +55,12 @@ export const signUpFailed = (error) => {
 /* Clear user data and cart on sign out */
 export const signOut = () => {
   return (dispatch) => {
-    return axios.post('/auth/signout', {}).then(() => {
-      dispatch({
-        type: actionTypes.AUTH_SIGNOUT,
-      });
-
-      history.push({ pathname: '/', fromSignOut: true });
+    localStorage.removeItem('token');
+    dispatch({
+      type: actionTypes.AUTH_SIGNOUT,
     });
+
+    history.push({ pathname: '/', fromSignOut: true });
   };
 };
 
@@ -87,14 +89,18 @@ export const signIn = (username, password) => {
     return axios
       .post('/auth/signin', authData)
       .then((res) => {
-        //Successful authentication, get user's data here
-        dispatch(authSuccess(res.data));
+        if (res.data.token) {
+          //Successful authentication, get user's data here
+          dispatch(authSuccess(res.data));
+        } else {
+          dispatch(signInFailed());
+        }
       })
       .catch((err) => {
         if (err.response) {
           dispatch(signInFailed(err.response));
         } else {
-          dispatch(signInFailed(null));
+          dispatch(signInFailed());
         }
       });
   };
@@ -114,14 +120,18 @@ export const signUp = (firstName, lastName, email, username, password) => {
     return axios
       .post('/auth/signup', authData)
       .then((res) => {
-        //Successful authentication, get user's data here
-        dispatch(authSuccess(res.data));
+        if (res.data.token) {
+          //Successful authentication, get user's data here
+          dispatch(authSuccess(res.data));
+        } else {
+          dispatch(signUpFailed());
+        }
       })
       .catch((err) => {
         if (err.response) {
           dispatch(signUpFailed(err.response));
         } else {
-          dispatch(signUpFailed(null));
+          dispatch(signUpFailed());
         }
       });
   };
@@ -134,8 +144,12 @@ export const authenticateToken = () => {
     return axios
       .get('/auth/me')
       .then((res) => {
-        //Successful authentication, get user's data here
-        dispatch(authSuccess(res.data));
+        if (res.data.user) {
+          //Successful authentication, get user's data here
+          dispatch(authSuccess(res.data));
+        } else {
+          dispatch(authTokenFailed());
+        }
       })
       .catch(() => {
         dispatch(authTokenFailed());
