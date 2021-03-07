@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.8194f5d1.chunk.css",
-    "main.js": "/static/js/main.0db84bf5.chunk.js",
-    "main.js.map": "/static/js/main.0db84bf5.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.692c6cb8.js",
-    "runtime-main.js.map": "/static/js/runtime-main.692c6cb8.js.map",
-    "static/js/2.3a1fb224.chunk.js": "/static/js/2.3a1fb224.chunk.js",
-    "static/js/2.3a1fb224.chunk.js.map": "/static/js/2.3a1fb224.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.b2c1f33e854a561c5dc37992eda7dcac.js": "/precache-manifest.b2c1f33e854a561c5dc37992eda7dcac.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.8194f5d1.chunk.css.map": "/static/css/main.8194f5d1.chunk.css.map",
-    "static/js/2.3a1fb224.chunk.js.LICENSE.txt": "/static/js/2.3a1fb224.chunk.js.LICENSE.txt"
+    "main.css": "/uforum/static/css/main.8194f5d1.chunk.css",
+    "main.js": "/uforum/static/js/main.7616c37e.chunk.js",
+    "main.js.map": "/uforum/static/js/main.7616c37e.chunk.js.map",
+    "runtime-main.js": "/uforum/static/js/runtime-main.f090c8b6.js",
+    "runtime-main.js.map": "/uforum/static/js/runtime-main.f090c8b6.js.map",
+    "static/js/2.3a1fb224.chunk.js": "/uforum/static/js/2.3a1fb224.chunk.js",
+    "static/js/2.3a1fb224.chunk.js.map": "/uforum/static/js/2.3a1fb224.chunk.js.map",
+    "index.html": "/uforum/index.html",
+    "precache-manifest.74540eb809fb345902469e27449e77ea.js": "/uforum/precache-manifest.74540eb809fb345902469e27449e77ea.js",
+    "service-worker.js": "/uforum/service-worker.js",
+    "static/css/main.8194f5d1.chunk.css.map": "/uforum/static/css/main.8194f5d1.chunk.css.map",
+    "static/js/2.3a1fb224.chunk.js.LICENSE.txt": "/uforum/static/js/2.3a1fb224.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.692c6cb8.js",
+    "static/js/runtime-main.f090c8b6.js",
     "static/js/2.3a1fb224.chunk.js",
     "static/css/main.8194f5d1.chunk.css",
-    "static/js/main.0db84bf5.chunk.js"
+    "static/js/main.7616c37e.chunk.js"
   ]
 }
